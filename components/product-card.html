@@ -1,0 +1,12 @@
+<!-- Product card template — {{placeholders}} filled in script.js -->
+<article class="product-card" data-product-id="{{id}}">
+  <div class="product-card-image-wrap">
+    <img class="product-card-image" src="{{image}}" alt="{{name}}" width="900" height="675" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+  </div>
+  <div class="product-card-body">
+    <h3 class="product-card-title">{{name}}</h3>
+    <p class="product-card-desc">{{description}}</p>
+    <p class="product-card-price">{{price}}</p>
+    <a class="btn btn-whatsapp product-card-order" href="{{whatsappUrl}}" rel="noopener noreferrer">Order on WhatsApp</a>
+  </div>
+</article>
