@@ -384,26 +384,21 @@ code,
   background: linear-gradient(180deg, rgba(201, 169, 98, 0.08), transparent 45%), var(--color-bg);
 }
 
-/* Product grid */
+/* Product grid — minmax(0,1fr) lets two columns stay side-by-side (avoids content min-width blowout) */
 .product-grid {
   display: grid;
   gap: clamp(1rem, 2.1vw, 1.5rem);
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 560px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 @media (min-width: 900px) {
   .product-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 .product-card {
+  min-width: 0;
   background: linear-gradient(180deg, var(--color-surface-strong) 0%, var(--color-surface) 100%);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -531,6 +526,62 @@ code,
   margin-top: auto;
 }
 
+/* Mobile: always 2 columns (50% − half gap each), compact cards; desktop unchanged at 900px+ (3 cols) */
+@media (max-width: 768px) {
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0.5rem;
+    row-gap: 0.65rem;
+  }
+
+  .product-card-image-wrap {
+    aspect-ratio: auto;
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+  }
+
+  .product-card-image {
+    height: 100%;
+    min-height: 0;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .product-card-body {
+    padding: 0.55rem 0.45rem 0.6rem;
+    gap: 0.3rem;
+  }
+
+  .product-card-title {
+    font-size: 0.98rem;
+    line-height: 1.2;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .product-card-desc {
+    font-size: 0.74rem;
+    line-height: 1.32;
+    margin-bottom: 0.35rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .product-card-price {
+    font-size: 0.78rem;
+  }
+
+  .product-card .product-card-order {
+    font-size: 0.72rem;
+    padding: 0.5rem 0.3rem;
+    min-height: 2.75rem;
+    line-height: 1.2;
+    box-sizing: border-box;
+  }
+}
+
 /* About */
 .about-grid {
   list-style: none;
@@ -647,5 +698,83 @@ code,
 
   .section-banner {
     min-height: 170px;
+  }
+}
+/* FORCE MOBILE PRODUCT GRID - 2 CARDS PER ROW */
+@media (max-width: 768px) {
+  .products-grid,
+  .product-grid,
+  .category-products,
+  .product-list {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .product-card {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 10px !important;
+  }
+
+  .product-card img,
+  .product-image,
+  .product-card .product-img {
+    width: 100% !important;
+    height: 130px !important;
+    object-fit: cover !important;
+  }
+
+  .product-card h3,
+  .product-card .product-title {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+  }
+
+  .product-card p,
+  .product-card .product-description {
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+  }
+
+  .product-card a,
+  .product-card button {
+    font-size: 12px !important;
+    padding: 8px 6px !important;
+  }
+}/* FORCE 2 PRODUCT CARDS PER ROW ON MOBILE */
+@media (max-width: 768px) {
+  section.category-section .product-grid[data-category] {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  section.category-section .product-card {
+    padding: 8px !important;
+    border-radius: 14px !important;
+  }
+
+  section.category-section .product-card-image {
+    height: 120px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+  }
+
+  section.category-section .product-card h3 {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+  }
+
+  section.category-section .product-card p {
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+  }
+
+  section.category-section .product-card .btn,
+  section.category-section .product-card a {
+    font-size: 11px !important;
+    padding: 7px 5px !important;
   }
 }
