@@ -2,7 +2,7 @@
  * Brexil — site behaviour
  * - Loads HTML partials (header, footer, product card)
  * - Renders products from data/products.js
- * - WhatsApp deep links with pre-filled product message
+ * - WhatsApp deep links with pre-filled product message (number: js/whatsapp-config.js)
  *
  * Serve the site over HTTP (e.g. VS Code Live Server) so fetch() can load /components/*.html.
  */
@@ -10,10 +10,17 @@
 (function () {
   'use strict';
 
-  /** UAE WhatsApp: digits only, country code included (no +). Example: 971501234567 */
-  var WHATSAPP_NUMBER = '971500000000';
-
   var BRAND_NAME = 'Brexil';
+
+  /**
+   * @returns {string}
+   */
+  function getWhatsAppNumber() {
+    var n = window.BREXIL_WHATSAPP_NUMBER;
+    if (typeof n === 'string' && /^[0-9]+$/.test(n)) return n;
+    console.error('Set window.BREXIL_WHATSAPP_NUMBER in js/whatsapp-config.js');
+    return '';
+  }
 
   var PATHS = {
     header: 'components/header.html',
@@ -53,7 +60,7 @@
    * @returns {string}
    */
   function buildWhatsAppUrl(productName) {
-    var base = 'https://wa.me/' + WHATSAPP_NUMBER;
+    var base = 'https://wa.me/' + getWhatsAppNumber();
     var lines = ['Hello ' + BRAND_NAME + ',', 'I would like to place an order.'];
     if (productName) {
       lines.push('Product: ' + productName);
@@ -134,12 +141,44 @@
   }
 
   /**
+   * @param {string} category
+   * @returns {string}
+   */
+  function categoryToLabel(category) {
+    if (category === 'ready-cut') return 'Ready-Cut';
+    return category.charAt(0).toUpperCase() + category.slice(1);
+  }
+
+  /**
+   * Creates a visible fallback image with category text.
+   * @param {string} label
+   * @returns {string}
+   */
+  function buildFallbackImageDataUrl(label) {
+    var safe = (label || 'Product').replace(/[^a-z0-9\- ]/gi, '');
+    var svg =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="675" viewBox="0 0 900 675">' +
+      '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0%" stop-color="#101010"/><stop offset="100%" stop-color="#1a1a1a"/></linearGradient></defs>' +
+      '<rect width="900" height="675" fill="url(#g)"/>' +
+      '<rect x="36" y="36" width="828" height="603" rx="18" fill="none" stroke="#c9a962" stroke-opacity="0.55" stroke-width="3"/>' +
+      '<text x="450" y="320" fill="#e4c77a" font-family="Arial, Helvetica, sans-serif" font-size="52" text-anchor="middle" font-weight="700">' +
+      safe +
+      '</text>' +
+      '<text x="450" y="374" fill="#d8d2c5" font-family="Arial, Helvetica, sans-serif" font-size="26" text-anchor="middle">Image unavailable</text>' +
+      '</svg>';
+    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+  }
+
+  /**
    * @param {string} cardHtml
    * @param {typeof window.BREXIL_PRODUCTS[0]} product
    */
   function productToHtml(cardHtml, product) {
     var map = {
       id: escapeHtml(product.id),
+      category: escapeHtml(product.category),
+      categoryLabel: escapeHtml(categoryToLabel(product.category)),
       name: escapeHtml(product.name),
       description: escapeHtml(product.description),
       price: escapeHtml(product.price),
@@ -164,14 +203,26 @@
     });
   }
 
+  function initProductImageFallbacks() {
+    document.querySelectorAll('.product-card-image').forEach(function (img) {
+      img.addEventListener('error', function onError() {
+        var label = img.getAttribute('data-category-label') || 'Product';
+        img.removeEventListener('error', onError);
+        img.src = buildFallbackImageDataUrl(label);
+      });
+    });
+  }
+
   function setFooterYear() {
     var y = document.querySelector('[data-year]');
     if (y) y.textContent = String(new Date().getFullYear());
   }
 
-  function initContactWhatsApp() {
-    var link = document.getElementById('contact-whatsapp');
-    if (link) link.href = buildWhatsAppUrl();
+  function initWhatsAppLinks() {
+    var url = buildWhatsAppUrl();
+    document.querySelectorAll('[data-brexil-whatsapp="general"]').forEach(function (el) {
+      el.href = url;
+    });
   }
 
   function run() {
@@ -202,8 +253,9 @@
         if (footerHost) footerHost.innerHTML = footerHtml;
 
         setFooterYear();
-        initContactWhatsApp();
+        initWhatsAppLinks();
         renderProducts(cardTpl, products);
+        initProductImageFallbacks();
       })
       .catch(function (err) {
         console.error(err);

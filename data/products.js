@@ -2,134 +2,196 @@
  * Brexil — product catalog (single source of truth)
  * Edit items here; the site renders from this list.
  *
- * category: 'beef' | 'chicken' | 'eggs' | 'ready-cut' | 'combo' (internal keys — keep as-is)
+ * category: 'beef' | 'chicken' | 'mutton' | 'eggs' (internal keys — keep as-is)
  * image: Unsplash URLs (raw retail / butcher / prep — no live animals, no plated restaurant meals)
  */
+var IMG_BEEF =
+  'https://images.unsplash.com/photo-1603048297172-f699998208c6?auto=format&fit=crop&w=900&q=85';
+var IMG_CHICKEN =
+  'https://images.unsplash.com/photo-1708782342351-74f02e9a16c4?auto=format&fit=crop&w=900&q=85';
+var IMG_MUTTON =
+  'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=900&q=85';
+var IMG_EGGS =
+  'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=900&q=85';
+
 window.BREXIL_PRODUCTS = [
+
   /* Beef */
   {
-    id: 'beef-mince',
+    id: 'beef-mince-keema',
     category: 'beef',
-    name: 'Premium Beef Mince',
-    description: 'Lean mince for kofta, burgers, and everyday cooking.',
+    name: 'Beef Mince (Keema)',
+    description: 'Freshly minced daily with hygienic handling for premium family meals.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1612078894671-f11ba41d713e?auto=format&fit=crop&w=900&q=85',
+    image: 'https://www.freefoodphotos.com/imagelibrary/meat/slides/mince.jpg',
   },
   {
-    id: 'beef-cubes',
+    id: 'beef-steak-cuts',
     category: 'beef',
-    name: 'Beef Cubes for Stew',
-    description: 'Even cubes, trimmed for curries and slow cooks.',
+    name: 'Beef Steak Cuts',
+    description: 'Quality steak portions, carefully trimmed for tender home cooking.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1616689079156-8e8e1a25a923?auto=format&fit=crop&w=900&q=85',
+    image: 'assets/images/beef-steak-cuts.jpg',
   },
   {
-    id: 'beef-steak',
+    id: 'beef-nihari-cut',
     category: 'beef',
-    name: 'Steak Cuts',
-    description: 'Selected cuts for grilling and pan-searing at home.',
+    name: 'Nihari Cut',
+    description: 'Premium nihari pieces selected for rich flavor and slow-cooked depth.',
+    price: 'AED —',
+    image: 'assets/images/beef-nihari-cut.jpg',
+  },
+  {
+    id: 'beef-bbq-cuts',
+    category: 'beef',
+    name: 'BBQ Cuts',
+    description: 'Clean, quality barbecue cuts prepared for grills and gatherings.',
     price: 'AED —',
     image:
-      'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=85',
+      'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    id: 'beef-paya',
+    category: 'beef',
+    name: 'Beef Paya',
+    description: 'Thoroughly cleaned paya, fresh and hygienic for traditional recipes.',
+    price: 'AED —',
+    image:
+      'https://images.unsplash.com/photo-1625944525903-dc5cdd0a2f03?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    id: 'beef-boneless-boti-tikka',
+    category: 'beef',
+    name: 'Boneless Beef (Boti / Tikka Cut)',
+    description: 'Premium boneless cubes cut evenly for tikka, curry, and stir-fry.',
+    price: 'AED —',
+    image:
+      'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=900&q=85',
   },
 
-  /* Chicken — raw poultry only */
+  /* Chicken */
   {
-    id: 'chicken-whole',
+    id: 'chicken-fresh-broiler',
     category: 'chicken',
-    name: 'Whole Chicken',
-    description: 'Fresh whole bird, cleaned and chilled.',
+    name: 'Fresh Broiler Chicken',
+    description: 'Fresh daily broiler chicken, hygienically cleaned and chilled.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1708782342351-74f02e9a16c4?auto=format&fit=crop&w=900&q=85',
+    image: 'assets/images/chicken-fresh-broiler.jpg',
   },
   {
-    id: 'chicken-breast',
+    id: 'chicken-desi-on-order',
     category: 'chicken',
-    name: 'Chicken Breast',
-    description: 'Skinless breast fillets for salads, grills, and weekday meals.',
+    name: 'Freshly Slaughtered Desi Chicken (On Order)',
+    description: 'Prepared on request with premium hygiene and careful handling.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=900&q=85',
+    image: IMG_CHICKEN,
+  },
+  {
+    id: 'chicken-boneless',
+    category: 'chicken',
+    name: 'Chicken Boneless',
+    description: 'Quality boneless cuts, neatly trimmed for quick and clean cooking.',
+    price: 'AED —',
+    image: 'assets/images/chicken-boneless.jpg',
+  },
+  {
+    id: 'chicken-mince',
+    category: 'chicken',
+    name: 'Chicken Mince',
+    description: 'Fresh premium mince prepared in hygienic batches for daily recipes.',
+    price: 'AED —',
+    image: IMG_CHICKEN,
+  },
+  {
+    id: 'chicken-drumsticks',
+    category: 'chicken',
+    name: 'Chicken Drumsticks',
+    description: 'Juicy, quality drumsticks cleaned well and packed with care.',
+    price: 'AED —',
+    image: IMG_CHICKEN,
   },
   {
     id: 'chicken-wings',
     category: 'chicken',
     name: 'Chicken Wings',
-    description: 'Party-ready wings for the oven or air fryer.',
+    description: 'Fresh hygienic wings in premium portions for family platters.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1759493321741-883fbf9f433c?auto=format&fit=crop&w=900&q=85',
+    image: IMG_CHICKEN,
+  },
+
+  /* Mutton */
+  {
+    id: 'mutton-mix',
+    category: 'mutton',
+    name: 'Mutton Mix',
+    description: 'Balanced premium mix cuts, freshly prepared for rich home curries.',
+    price: 'AED —',
+    image: IMG_MUTTON,
+  },
+  {
+    id: 'mutton-paya-cleaned',
+    category: 'mutton',
+    name: 'Fresh Mutton Paya (Cleaned & Ready)',
+    description: 'Carefully cleaned and ready-to-cook paya with hygienic preparation.',
+    price: 'AED —',
+    image: IMG_MUTTON,
+  },
+  {
+    id: 'mutton-chops',
+    category: 'mutton',
+    name: 'Mutton Chops',
+    description: 'Premium fresh chops with quality trimming for perfect tenderness.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+  {
+    id: 'mutton-mince',
+    category: 'mutton',
+    name: 'Mutton Mince',
+    description: 'Freshly minced mutton prepared with strict hygiene and consistency.',
+    price: 'AED —',
+    image: IMG_MUTTON,
+  },
+  {
+    id: 'mutton-boneless-boti-tikka',
+    category: 'mutton',
+    name: 'Boneless Mutton (Boti / Tikka Cut)',
+    description: 'Quality boneless pieces cut evenly for premium grills and curries.',
+    price: 'AED —',
+    image: IMG_MUTTON,
   },
 
   /* Eggs */
   {
-    id: 'eggs-tray-30',
+    id: 'eggs-white-medium-large',
     category: 'eggs',
-    name: 'Fresh Eggs — 30 Tray',
-    description: 'Farm-fresh eggs, handled with care.',
+    name: 'White Eggs (Medium / Large)',
+    description: 'Fresh white eggs, hygienically packed for daily family use.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=900&q=85',
+    image: IMG_EGGS,
   },
   {
-    id: 'eggs-tray-15',
+    id: 'eggs-brown',
     category: 'eggs',
-    name: 'Fresh Eggs — 15 Tray',
-    description: 'A compact tray for smaller households.',
+    name: 'Brown Eggs',
+    description: 'Premium brown eggs selected for freshness, quality, and clean handling.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1590577976322-484d032b9db2?auto=format&fit=crop&w=900&q=85',
-  },
-
-  /* Ready-cut — prepared raw portions */
-  {
-    id: 'ready-strips',
-    category: 'ready-cut',
-    name: 'Stir-Fry Strips',
-    description: 'Pre-cut strips for the wok and quick dinners.',
-    price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1621996346565-e3dbc353d2d5?auto=format&fit=crop&w=900&q=85',
+    image: IMG_EGGS,
   },
   {
-    id: 'ready-diced',
-    category: 'ready-cut',
-    name: 'Diced Mixed Pack',
-    description: 'Time-saving diced portions for busy weeknights.',
+    id: 'eggs-organic',
+    category: 'eggs',
+    name: 'Organic Eggs',
+    description: 'Quality organic eggs supplied fresh and packed with hygienic care.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1600180786608-28d06391d25c?auto=format&fit=crop&w=900&q=85',
-  },
-
-  /* Combo deals */
-  {
-    id: 'combo-burger-kit',
-    category: 'combo',
-    name: 'Burger Kit',
-    description: 'Patties, burger-ready mince, and essentials for burger night at home.',
-    price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1578000506877-bc947ed8dcc7?auto=format&fit=crop&w=900&q=85',
+    image: IMG_EGGS,
   },
   {
-    id: 'combo-bbq-pack',
-    category: 'combo',
-    name: 'BBQ Pack',
-    description: 'Mixed cuts and skewer-friendly pieces for the grill.',
+    id: 'eggs-desi-farm-fresh',
+    category: 'eggs',
+    name: 'Farm Fresh Desi Eggs',
+    description: 'Farm-fresh desi eggs for households seeking premium everyday nutrition.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1770838519139-913994813534?auto=format&fit=crop&w=900&q=85',
-  },
-  {
-    id: 'combo-nihari-pack',
-    category: 'combo',
-    name: 'Nihari Pack',
-    description: 'Cuts chosen for rich, slow-cooked nihari and stews.',
-    price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1678127095367-f776ac0601bc?auto=format&fit=crop&w=900&q=85',
+    image: IMG_EGGS,
   },
 ];

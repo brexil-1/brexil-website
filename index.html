@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Brexil provides fresh meat, chicken, eggs, ready-cut items, and family combo packs for household customers in the UAE." />
+  <meta name="description" content="Brexil provides fresh beef, chicken, mutton, and eggs for household customers in the UAE." />
   <title>Brexil | Fresh Meat, Chicken &amp; Eggs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,11 +21,16 @@
       <div class="hero-inner">
         <p class="hero-eyebrow">UAE households</p>
         <h1 id="hero-heading" class="hero-title">Quality meat, chicken &amp; eggs</h1>
-        <p class="hero-lead">Brexil provides fresh meat, chicken, eggs, ready-cut items, and family combo packs for household customers in the UAE.</p>
+        <p class="hero-lead">Brexil provides fresh beef, chicken, mutton, and eggs for household customers in the UAE.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#combos">View combo deals</a>
+          <a class="btn btn-primary" href="#mutton">View featured cuts</a>
           <a class="btn btn-ghost" href="#beef">Browse products</a>
         </div>
+        <ul class="hero-points" aria-label="Brexil highlights">
+          <li>Cleanly packed</li>
+          <li>Household friendly portions</li>
+          <li>Fast WhatsApp ordering</li>
+        </ul>
       </div>
     </section>
 
@@ -53,8 +58,20 @@
       </div>
     </section>
 
+    <!-- Category: Mutton -->
+    <section id="mutton" class="section category-section" aria-labelledby="mutton-heading">
+      <div class="section-inner">
+        <div class="section-banner" data-banner-key="mutton" aria-hidden="true"></div>
+        <header class="section-header">
+          <h2 id="mutton-heading" class="section-title">Mutton</h2>
+          <p class="section-intro">Premium mutton cuts cleaned and prepared for rich family recipes.</p>
+        </header>
+        <div class="product-grid" data-category="mutton"></div>
+      </div>
+    </section>
+
     <!-- Category: Eggs -->
-    <section id="eggs" class="section category-section" aria-labelledby="eggs-heading">
+    <section id="eggs" class="section category-section section-alt" aria-labelledby="eggs-heading">
       <div class="section-inner">
         <div class="section-banner" data-banner-key="eggs" aria-hidden="true"></div>
         <header class="section-header">
@@ -62,35 +79,6 @@
           <p class="section-intro">Reliable trays for families who cook every day.</p>
         </header>
         <div class="product-grid" data-category="eggs"></div>
-      </div>
-    </section>
-
-    <!-- Category: Ready-Cut -->
-    <section id="ready-cut" class="section category-section section-alt" aria-labelledby="ready-heading">
-      <div class="section-inner">
-        <div class="section-banner" data-banner-key="readyCut" aria-hidden="true"></div>
-        <header class="section-header">
-          <h2 id="ready-heading" class="section-title">Ready-Cut Items</h2>
-          <p class="section-intro">Save time with portions cut for stir-fry, curry, and quick meals.</p>
-        </header>
-        <div class="product-grid" data-category="ready-cut"></div>
-      </div>
-    </section>
-
-    <!-- Combo Deals -->
-    <section id="combos" class="section category-section combos-highlight" aria-labelledby="combos-heading">
-      <div class="section-inner">
-        <div class="section-banner" data-banner-key="combos" aria-hidden="true"></div>
-        <header class="section-header">
-          <h2 id="combos-heading" class="section-title">Combo Deals</h2>
-          <p class="section-intro">Family packs for burger nights, BBQs, and slow-cooked favourites.</p>
-        </header>
-        <ul class="combo-list" aria-label="Featured combo deals">
-          <li>Burger Kit</li>
-          <li>BBQ Pack</li>
-          <li>Nihari Pack</li>
-        </ul>
-        <div class="product-grid" data-category="combo"></div>
       </div>
     </section>
 
@@ -132,8 +120,8 @@
         </header>
         <div class="contact-card">
           <p><strong>WhatsApp</strong> — fastest way to order</p>
-          <a class="btn btn-whatsapp contact-wa" id="contact-whatsapp" href="#">Message Brexil</a>
-          <p class="contact-note">Update your WhatsApp number in <code>js/script.js</code> (<span class="mono">WHATSAPP_NUMBER</span>).</p>
+          <a class="btn btn-whatsapp contact-wa" data-brexil-whatsapp="general" href="#" rel="noopener noreferrer">Message Brexil</a>
+          <p class="contact-note">Update your WhatsApp number in <code>js/whatsapp-config.js</code> (<span class="mono">BREXIL_WHATSAPP_NUMBER</span>).</p>
         </div>
       </div>
     </section>
@@ -143,6 +131,7 @@
 
   <script src="data/media.js"></script>
   <script src="data/products.js"></script>
+  <script src="js/whatsapp-config.js"></script>
   <script src="js/script.js" defer></script>
 </body>
 </html>

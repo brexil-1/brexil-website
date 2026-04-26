@@ -1,7 +1,7 @@
 <!-- Product card template — {{placeholders}} filled in script.js -->
-<article class="product-card" data-product-id="{{id}}">
+<article class="product-card" data-product-id="{{id}}" data-category="{{category}}">
   <div class="product-card-image-wrap">
-    <img class="product-card-image" src="{{image}}" alt="{{name}}" width="900" height="675" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+    <img class="product-card-image" src="{{image}}" alt="{{name}}" data-category-label="{{categoryLabel}}" width="900" height="675" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
   </div>
   <div class="product-card-body">
     <h3 class="product-card-title">{{name}}</h3>
