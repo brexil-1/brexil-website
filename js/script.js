@@ -838,10 +838,14 @@ document.addEventListener('click', function (e) {
 
 renderCart();
 
-function setOrderLocationMessage(text, kind) {
+function setOrderLocationMessage(text, kind, showDeniedHelp) {
   var el = document.getElementById('order-location-status');
+  var deniedExtra = document.getElementById('order-location-denied-extra');
   if (!el) return;
   el.classList.remove('form-location-status--success', 'form-location-status--error', 'form-location-status--muted');
+  if (deniedExtra) {
+    deniedExtra.hidden = showDeniedHelp !== true;
+  }
   if (text) {
     el.textContent = text;
     el.hidden = false;
@@ -851,8 +855,22 @@ function setOrderLocationMessage(text, kind) {
   } else {
     el.textContent = '';
     el.hidden = true;
+    if (deniedExtra) deniedExtra.hidden = true;
   }
 }
+
+(function initOrderLocationPasteInstead() {
+  var pasteBtn = document.getElementById('order-location-paste-instead');
+  if (!pasteBtn) return;
+  pasteBtn.addEventListener('click', function () {
+    var maps = document.getElementById('order-maps-link');
+    if (!maps) return;
+    maps.focus();
+    if (typeof maps.scrollIntoView === 'function') {
+      maps.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+})();
 
 (function initUseCurrentLocation() {
   var btn = document.getElementById('order-use-location');
@@ -865,20 +883,24 @@ function setOrderLocationMessage(text, kind) {
   }
   btn.addEventListener('click', function () {
     if (!mapsField) return;
-    setOrderLocationMessage('Getting your location…', 'muted');
+    setOrderLocationMessage('Getting your location…', 'muted', false);
     navigator.geolocation.getCurrentPosition(
       function (pos) {
         var lat = pos.coords.latitude;
         var lon = pos.coords.longitude;
         var link = 'https://www.google.com/maps?q=' + lat + ',' + lon;
         mapsField.value = link;
-        setOrderLocationMessage('Location added successfully.', 'success');
+        setOrderLocationMessage('Location added successfully.', 'success', false);
       },
       function (err) {
         if (err && err.code === 1) {
-          setOrderLocationMessage('Location permission denied. Please paste location manually.', 'error');
+          setOrderLocationMessage(
+            'Please allow location access or paste your Google Maps location for accurate delivery.',
+            'error',
+            true,
+          );
         } else {
-          setOrderLocationMessage('Location could not be captured. Please paste location manually.', 'error');
+          setOrderLocationMessage('Location could not be captured. Please paste location manually.', 'error', false);
         }
       },
       { enableHighAccuracy: true, maximumAge: 0, timeout: 20000 },

@@ -137,6 +137,19 @@
                 <button type="button" class="btn btn-ghost order-use-location" id="order-use-location" aria-describedby="order-location-status">Use My Current Location</button>
               </div>
               <p class="form-location-status" id="order-location-status" role="status" aria-live="polite" hidden></p>
+              <div class="order-location-denied-extra" id="order-location-denied-extra" hidden>
+                <p class="order-location-denied-tip">
+                  Tip: Open this site in Chrome or Safari, tap the lock/settings icon near the website address, and allow Location access.
+                </p>
+                <button
+                  type="button"
+                  class="order-location-paste-instead"
+                  id="order-location-paste-instead"
+                  aria-controls="order-maps-link"
+                >
+                  Paste Google Maps Location Instead
+                </button>
+              </div>
               <label for="order-maps-link" class="order-maps-label">Google Maps Location (optional)</label>
               <input type="text" id="order-maps-link" name="mapsLink" inputmode="url" autocomplete="off" placeholder="Paste Google Maps link if needed" />
             </div>

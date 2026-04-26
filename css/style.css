@@ -1073,6 +1073,48 @@ code,
   color: #d4a0a0;
 }
 
+.order-location-denied-extra {
+  margin-top: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.order-location-denied-tip {
+  margin: 0;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  font-family: var(--font-sans);
+  color: var(--color-muted);
+}
+
+.order-location-paste-instead {
+  align-self: flex-start;
+  margin: 0;
+  padding: 0.2rem 0;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-gold-muted);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  max-width: 100%;
+}
+
+.order-location-paste-instead:hover {
+  color: var(--color-gold-bright);
+}
+
+.order-location-paste-instead:focus-visible {
+  outline: 2px solid rgba(228, 199, 122, 0.55);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 #place-order-wa,
 .place-order-wa {
   width: 100%;
