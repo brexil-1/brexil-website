@@ -111,6 +111,45 @@
       </div>
     </section>
 
+    <!-- Your Order -->
+    <section id="order" class="section order-section section-alt" aria-labelledby="order-heading">
+      <div class="section-inner order-section-inner">
+        <header class="section-header">
+          <h2 id="order-heading" class="section-title">Your Order</h2>
+          <p class="section-intro">Review your items and add delivery details. We will confirm on WhatsApp.</p>
+        </header>
+        <div class="order-card">
+          <p id="cart-empty" class="cart-empty" role="status">Your cart is empty. Add products from the categories above.</p>
+          <ul id="cart-items" class="cart-list" aria-live="polite" hidden></ul>
+          <form class="order-form" id="order-form" novalidate>
+            <div class="form-group">
+              <label for="order-name">Name</label>
+              <input type="text" id="order-name" name="name" autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label for="order-phone">Phone number</label>
+              <input type="tel" id="order-phone" name="phone" autocomplete="tel" inputmode="tel" required />
+            </div>
+            <div class="form-group form-group--delivery-location">
+              <label for="order-address">Delivery address</label>
+              <textarea id="order-address" name="address" rows="3" autocomplete="street-address"></textarea>
+              <div class="order-location-row">
+                <button type="button" class="btn btn-ghost order-use-location" id="order-use-location" aria-describedby="order-location-status">Use My Current Location</button>
+              </div>
+              <p class="form-location-status" id="order-location-status" role="status" aria-live="polite" hidden></p>
+              <label for="order-maps-link" class="order-maps-label">Google Maps Location (optional)</label>
+              <input type="text" id="order-maps-link" name="mapsLink" inputmode="url" autocomplete="off" placeholder="Paste Google Maps link if needed" />
+            </div>
+            <div class="form-group">
+              <label for="order-time">Delivery time preference</label>
+              <input type="text" id="order-time" name="deliveryTime" placeholder="e.g. Today evening, 6–8pm" />
+            </div>
+            <button type="button" class="btn btn-whatsapp place-order-wa" id="place-order-wa">Place Order on WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
       <div class="section-inner contact-inner">
@@ -128,6 +167,8 @@
   </main>
 
   <div id="site-footer"></div>
+
+  <div id="cart-toast" class="cart-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
 
   <script src="data/media.js"></script>
   <script src="data/products.js"></script>
