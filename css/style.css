@@ -566,14 +566,6 @@ code,
   border-color: rgba(228, 199, 122, 0.55);
 }
 
-.product-qty-note {
-  margin: 0.15rem 0 0;
-  font-size: 0.64rem;
-  line-height: 1.35;
-  color: var(--color-muted);
-  font-style: italic;
-}
-
 .product-special-wrap {
   width: 100%;
   margin: 0 0 var(--space-sm);
@@ -616,14 +608,6 @@ code,
   outline: none;
   border-color: rgba(228, 199, 122, 0.55);
   box-shadow: 0 0 0 1px rgba(201, 169, 98, 0.15);
-}
-
-.product-special-note {
-  margin: 0;
-  font-size: 0.62rem;
-  line-height: 1.4;
-  color: var(--color-muted);
-  font-style: italic;
 }
 
 .product-card-actions {
@@ -777,11 +761,6 @@ code,
     font-size: 0.65rem;
   }
 
-  .product-qty-note {
-    font-size: 0.55rem;
-    line-height: 1.3;
-  }
-
   .product-qty-field-label {
     font-size: 0.6rem;
   }
@@ -807,10 +786,6 @@ code,
     font-size: 0.65rem;
   }
 
-  .product-special-note {
-    font-size: 0.55rem;
-  }
-
   .product-card .add-to-cart,
   .product-card .product-card-order {
     font-size: 0.72rem;
@@ -819,6 +794,37 @@ code,
     line-height: 1.2;
     box-sizing: border-box;
   }
+}
+
+/* Shared ordering notes */
+.order-note-section {
+  padding-top: var(--space-md);
+  padding-bottom: 0;
+}
+
+.order-note-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.2);
+  padding: var(--space-md);
+}
+
+.order-note-title {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--color-gold-bright);
+}
+
+.order-note-text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-text-soft);
+}
+
+.order-note-text + .order-note-text {
+  margin-top: 0.5rem;
 }
 
 /* About */

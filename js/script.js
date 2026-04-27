@@ -194,7 +194,6 @@
         idDom +
         '" min="0.5" max="10" step="0.5" inputmode="decimal" placeholder="e.g. 0.5, 1, 1.5 … 10" />' +
         '</div>' +
-        '<p class="product-qty-note">For meat items, weight is based on gross/pre-cleaning weight. Final net weight may vary slightly after cleaning, trimming, and cutting.</p>' +
         '</div>'
       );
     }
