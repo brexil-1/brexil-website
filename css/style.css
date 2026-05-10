@@ -413,18 +413,36 @@ code,
 }
 
 /* ----- Mutton hub & detail ----- */
-.mutton-section .mutton-hub-banner {
-  margin-bottom: var(--space-lg);
+/* Large banner below hero: bright farm image — full-bleed (breaks out of .section-inner max-width) */
+.mutton-section .mutton-hub-banner.section-banner {
+  --mutton-banner-edge: clamp(0.35rem, 1.5vw, 0.85rem);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 2 * var(--mutton-banner-edge));
+  max-width: none;
+  margin: 0 0 var(--space-lg);
+  box-sizing: border-box;
+  background-color: #e6efe8;
+  background-image: url("../assets/images/mutton-origin-farm.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  min-height: min(44vw, 360px);
+  border-radius: var(--radius-lg);
 }
 
 .mutton-hub-card {
+  --mutton-card-edge: clamp(0.35rem, 1.5vw, 0.85rem);
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: clamp(1rem, 3vw, 2rem);
+  /* Wider visual column so cuts read clearly — image stays left */
+  grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr);
+  gap: clamp(0.5rem, 1.75vw, 1.1rem);
   align-items: stretch;
-  width: 100%;
-  max-width: var(--max-w);
-  margin: 0 auto;
+  width: calc(100vw - 2 * var(--mutton-card-edge));
+  max-width: none;
+  margin-left: calc(50% - 50vw + var(--mutton-card-edge));
+  margin-right: calc(50% - 50vw + var(--mutton-card-edge));
   padding: 0;
   text-align: left;
   border: 1px solid var(--color-border);
@@ -450,14 +468,17 @@ code,
 
 .mutton-hub-card__media {
   position: relative;
-  min-height: 220px;
-  background: #111;
+  min-height: 240px;
+  background: linear-gradient(160deg, #1a1610, #0d0d0d);
 }
 
 .mutton-hub-card__img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
@@ -614,18 +635,781 @@ code,
 }
 
 /* ----- Lamb hub & detail (matches Mutton) ----- */
-.lamb-section .lamb-hub-banner {
+/* Large lamb banner below Mutton hub: premium image — full-bleed (overrides inline background from script.js/media.js) */
+.lamb-section .lamb-hub-banner.section-banner {
+  --lamb-banner-edge: clamp(0.35rem, 1.5vw, 0.85rem);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 2 * var(--lamb-banner-edge));
+  max-width: none;
+  margin: 0 0 var(--space-lg);
+  box-sizing: border-box;
+  background-color: #e9f2eb;
+  background-image: url("../assets/images/lamb-origin-premium.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  min-height: min(46vw, 375px);
+  border-radius: var(--radius-lg);
+}
+
+/* ----- Beef category banner (matches Mutton / Lamb full-bleed strip) ----- */
+.beef-section .beef-hub-banner.section-banner {
+  --beef-banner-edge: clamp(0.35rem, 1.5vw, 0.85rem);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 2 * var(--beef-banner-edge));
+  max-width: none;
+  margin: 0 0 var(--space-lg);
+  box-sizing: border-box;
+  background-color: #e8efe5;
+  background-image: url("../assets/images/beef-origin-farm.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  min-height: min(45vw, 368px);
+  border-radius: var(--radius-lg);
+}
+
+/* ----- Chicken category banner (matches Mutton / Lamb / Beef full-bleed strip) ----- */
+.chicken-section .chicken-hub-banner.section-banner {
+  --chicken-banner-edge: clamp(0.35rem, 1.5vw, 0.85rem);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 2 * var(--chicken-banner-edge));
+  max-width: none;
+  margin: 0 0 var(--space-lg);
+  box-sizing: border-box;
+  background-color: #eef4eb;
+  background-image: url("../assets/images/chicken-origin-farm.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  min-height: min(46vw, 375px);
+  border-radius: var(--radius-lg);
+}
+
+/* ----- Eggs category banner (matches Mutton / Lamb / Beef / Chicken full-bleed strip) ----- */
+.eggs-section .eggs-hub-banner.section-banner {
+  --eggs-banner-edge: clamp(0.35rem, 1.5vw, 0.85rem);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 2 * var(--eggs-banner-edge));
+  max-width: none;
+  margin: 0 0 var(--space-lg);
+  box-sizing: border-box;
+  background-color: #f6f3ea;
+  background-image: url("../assets/images/eggs-farm-origin.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  min-height: min(46vw, 378px);
+  border-radius: var(--radius-lg);
+}
+
+/* ----- Eggs hub & detail (same flow as Chicken; slightly lighter spacing) ----- */
+.eggs-hub-card {
+  --eggs-card-edge: clamp(0.35rem, 1.5vw, 0.85rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr);
+  gap: clamp(0.45rem, 1.5vw, 0.95rem);
+  align-items: stretch;
+  width: calc(100vw - 2 * var(--eggs-card-edge));
+  max-width: none;
+  margin-left: calc(50% - 50vw + var(--eggs-card-edge));
+  margin-right: calc(50% - 50vw + var(--eggs-card-edge));
+  padding: 0;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, rgba(21, 21, 21, 0.98), rgba(10, 10, 10, 0.92));
+  box-shadow: var(--shadow-premium);
+  cursor: pointer;
+  overflow: hidden;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.eggs-hub-card:hover {
+  border-color: rgba(228, 199, 122, 0.45);
+  transform: translateY(-2px);
+}
+
+.eggs-hub-card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.eggs-hub-card__media {
+  position: relative;
+  min-height: 220px;
+  background: linear-gradient(160deg, #1a1812, #0d0d0d);
+}
+
+.eggs-hub-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.eggs-hub-card__body {
+  padding: clamp(1rem, 2.6vw, 1.65rem);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-sm) * 0.85);
+  justify-content: center;
+}
+
+.eggs-hub-card__eyebrow {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+}
+
+.eggs-hub-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 2.8vw, 1.85rem);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.eggs-hub-card__desc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text-soft);
+}
+
+.eggs-hub-card__cta {
+  align-self: flex-start;
+  margin-top: calc(var(--space-xs) * 0.75);
+  pointer-events: none;
+}
+
+.eggs-detail__toolbar {
+  margin-bottom: var(--space-md);
+}
+
+.eggs-detail__intro {
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.eggs-featured {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.eggs-featured__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+
+.eggs-featured__root {
+  max-width: 460px;
+}
+
+.eggs-featured__root .product-card {
+  margin: 0;
+}
+
+.eggs-origins__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+
+.eggs-origin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media (min-width: 720px) {
+  .eggs-origin-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+}
+
+.eggs-origin-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.eggs-origin-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #111;
+}
+
+.eggs-origin-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.eggs-origin-card__body {
+  padding: clamp(0.75rem, 2vw, var(--space-md));
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-sm) * 0.9);
+  flex: 1;
+}
+
+.eggs-origin-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.eggs-origin-card__desc {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.48;
+  color: var(--color-text-soft);
+  flex: 1;
+}
+
+.eggs-origin-card__btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.eggs-origin-products {
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.eggs-origin-products__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 1.85vw, 1.25rem);
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+
+.eggs-bulk-note {
+  margin: clamp(1.25rem, 3.5vw, 2rem) 0 0;
+  padding: clamp(0.75rem, 2vw, var(--space-md));
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-gold-muted);
+  border-left: 3px solid rgba(201, 169, 98, 0.45);
+  padding-left: calc(var(--space-md) + 0.25rem);
+}
+
+.eggs-disclaimer {
+  margin: clamp(1rem, 2.5vw, 1.5rem) 0 0;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  border: 1px solid rgba(201, 169, 98, 0.22);
+  border-radius: var(--radius);
+  background: rgba(8, 8, 8, 0.35);
+}
+
+/* ----- Chicken hub & detail (matches Lamb / Beef / Mutton) ----- */
+.chicken-hub-card {
+  --chicken-card-edge: clamp(0.35rem, 1.5vw, 0.85rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr);
+  gap: clamp(0.5rem, 1.75vw, 1.1rem);
+  align-items: stretch;
+  width: calc(100vw - 2 * var(--chicken-card-edge));
+  max-width: none;
+  margin-left: calc(50% - 50vw + var(--chicken-card-edge));
+  margin-right: calc(50% - 50vw + var(--chicken-card-edge));
+  padding: 0;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, rgba(21, 21, 21, 0.98), rgba(10, 10, 10, 0.92));
+  box-shadow: var(--shadow-premium);
+  cursor: pointer;
+  overflow: hidden;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chicken-hub-card:hover {
+  border-color: rgba(228, 199, 122, 0.45);
+  transform: translateY(-2px);
+}
+
+.chicken-hub-card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.chicken-hub-card__media {
+  position: relative;
+  min-height: 240px;
+  background: linear-gradient(160deg, #141815, #0d0d0d);
+}
+
+.chicken-hub-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.chicken-hub-card__body {
+  padding: clamp(1.2rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.chicken-hub-card__eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+}
+
+.chicken-hub-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.chicken-hub-card__desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text-soft);
+}
+
+.chicken-hub-card__cta {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+  pointer-events: none;
+}
+
+.chicken-detail__toolbar {
+  margin-bottom: var(--space-md);
+}
+
+.chicken-detail__intro {
   margin-bottom: var(--space-lg);
 }
 
-.lamb-hub-card {
+.chicken-featured {
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.chicken-featured__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.chicken-featured__root {
+  max-width: 520px;
+}
+
+.chicken-featured__root .product-card {
+  margin: 0;
+}
+
+.chicken-origins__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.chicken-origin-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: clamp(1rem, 3vw, 2rem);
-  align-items: stretch;
-  width: 100%;
-  max-width: var(--max-w);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  max-width: 920px;
   margin: 0 auto;
+}
+
+.chicken-origin-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.chicken-origin-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #111;
+}
+
+.chicken-origin-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.chicken-origin-card__body {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.chicken-origin-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+.chicken-origin-card__desc {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-text-soft);
+  flex: 1;
+}
+
+.chicken-origin-card__btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.chicken-origin-products {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.chicken-origin-products__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.chicken-custom-note {
+  margin: clamp(1.5rem, 4vw, 2.25rem) 0 0;
+  padding: var(--space-md);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-gold-muted);
+  border-left: 3px solid rgba(201, 169, 98, 0.45);
+  padding-left: calc(var(--space-md) + 0.25rem);
+}
+
+.chicken-disclaimer {
+  margin: clamp(1.25rem, 3vw, 2rem) 0 0;
+  padding: var(--space-md);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  border: 1px solid rgba(201, 169, 98, 0.25);
+  border-radius: var(--radius);
+  background: rgba(8, 8, 8, 0.35);
+}
+
+/* ----- Beef hub & detail (matches Lamb / Mutton) ----- */
+.beef-hub-card {
+  --beef-card-edge: clamp(0.35rem, 1.5vw, 0.85rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr);
+  gap: clamp(0.5rem, 1.75vw, 1.1rem);
+  align-items: stretch;
+  width: calc(100vw - 2 * var(--beef-card-edge));
+  max-width: none;
+  margin-left: calc(50% - 50vw + var(--beef-card-edge));
+  margin-right: calc(50% - 50vw + var(--beef-card-edge));
+  padding: 0;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, rgba(21, 21, 21, 0.98), rgba(10, 10, 10, 0.92));
+  box-shadow: var(--shadow-premium);
+  cursor: pointer;
+  overflow: hidden;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.beef-hub-card:hover {
+  border-color: rgba(228, 199, 122, 0.45);
+  transform: translateY(-2px);
+}
+
+.beef-hub-card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.beef-hub-card__media {
+  position: relative;
+  min-height: 240px;
+  background: linear-gradient(160deg, #1a1410, #0d0d0d);
+}
+
+.beef-hub-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.beef-hub-card__body {
+  padding: clamp(1.2rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.beef-hub-card__eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+}
+
+.beef-hub-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.beef-hub-card__desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text-soft);
+}
+
+.beef-hub-card__cta {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+  pointer-events: none;
+}
+
+.beef-detail__toolbar {
+  margin-bottom: var(--space-md);
+}
+
+.beef-detail__intro {
+  margin-bottom: var(--space-lg);
+}
+
+.beef-featured {
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.beef-featured__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.beef-featured__root {
+  max-width: 520px;
+}
+
+.beef-featured__root .product-card {
+  margin: 0;
+}
+
+.beef-origins__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.beef-origin-grid {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0 auto;
+}
+
+.beef-origin-grid--main {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 920px;
+}
+
+.beef-origin-grid--paya {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 820px;
+}
+
+.beef-origin-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.beef-origin-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #111;
+}
+
+.beef-origin-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.beef-origin-card__body {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.beef-origin-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+.beef-origin-card__desc {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-text-soft);
+  flex: 1;
+}
+
+.beef-origin-card__btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.beef-paya-block {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.beef-paya-block__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+
+.beef-paya-block__intro {
+  margin: 0 0 var(--space-md);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-text-soft);
+  max-width: 52ch;
+}
+
+.beef-paya-note {
+  margin: var(--space-md) 0 0;
+  padding: var(--space-md);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  border: 1px solid rgba(201, 169, 98, 0.22);
+  border-radius: var(--radius);
+  background: rgba(8, 8, 8, 0.28);
+}
+
+.beef-origin-products {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.beef-origin-products__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.beef-general-note {
+  margin: clamp(1.5rem, 4vw, 2.25rem) 0 0;
+  padding: var(--space-md);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-gold-muted);
+  border-left: 3px solid rgba(201, 169, 98, 0.45);
+  padding-left: calc(var(--space-md) + 0.25rem);
+}
+
+.beef-disclaimer {
+  margin: clamp(1.25rem, 3vw, 2rem) 0 0;
+  padding: var(--space-md);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  border: 1px solid rgba(201, 169, 98, 0.25);
+  border-radius: var(--radius);
+  background: rgba(8, 8, 8, 0.35);
+}
+
+.lamb-hub-card {
+  --lamb-card-edge: clamp(0.35rem, 1.5vw, 0.85rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr);
+  gap: clamp(0.5rem, 1.75vw, 1.1rem);
+  align-items: stretch;
+  width: calc(100vw - 2 * var(--lamb-card-edge));
+  max-width: none;
+  margin-left: calc(50% - 50vw + var(--lamb-card-edge));
+  margin-right: calc(50% - 50vw + var(--lamb-card-edge));
   padding: 0;
   text-align: left;
   border: 1px solid var(--color-border);
@@ -651,14 +1435,17 @@ code,
 
 .lamb-hub-card__media {
   position: relative;
-  min-height: 220px;
-  background: #111;
+  min-height: 240px;
+  background: linear-gradient(160deg, #141a16, #0d0d0d);
 }
 
 .lamb-hub-card__img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
@@ -818,25 +1605,77 @@ code,
 
 @media (max-width: 900px) {
   .mutton-hub-card,
-  .lamb-hub-card {
+  .lamb-hub-card,
+  .beef-hub-card,
+  .chicken-hub-card,
+  .eggs-hub-card {
     grid-template-columns: 1fr;
   }
 
+  .mutton-hub-card {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    --mutton-card-edge: 0;
+    gap: clamp(0.5rem, 2vw, 0.9rem);
+  }
+
+  .lamb-hub-card {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    --lamb-card-edge: 0;
+    gap: clamp(0.5rem, 2vw, 0.9rem);
+  }
+
+  .beef-hub-card {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    --beef-card-edge: 0;
+    gap: clamp(0.5rem, 2vw, 0.9rem);
+  }
+
+  .chicken-hub-card {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    --chicken-card-edge: 0;
+    gap: clamp(0.5rem, 2vw, 0.9rem);
+  }
+
+  .eggs-hub-card {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    --eggs-card-edge: 0;
+    gap: clamp(0.5rem, 2vw, 0.9rem);
+  }
+
   .mutton-hub-card__media,
-  .lamb-hub-card__media {
+  .lamb-hub-card__media,
+  .beef-hub-card__media,
+  .chicken-hub-card__media,
+  .eggs-hub-card__media {
     min-height: 200px;
     max-height: 280px;
   }
 
   .mutton-origin-grid,
-  .lamb-origin-grid {
+  .lamb-origin-grid,
+  .beef-origin-grid--main,
+  .beef-origin-grid--paya,
+  .chicken-origin-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 520px) {
   .mutton-hub-card__cta,
-  .lamb-hub-card__cta {
+  .lamb-hub-card__cta,
+  .beef-hub-card__cta,
+  .chicken-hub-card__cta,
+  .eggs-hub-card__cta {
     width: 100%;
     justify-content: center;
   }
@@ -1761,6 +2600,31 @@ code,
 
   .section-banner {
     min-height: 170px;
+  }
+
+  .mutton-section .mutton-hub-banner.section-banner {
+    min-height: 240px;
+    --mutton-banner-edge: 0.4rem;
+  }
+
+  .lamb-section .lamb-hub-banner.section-banner {
+    min-height: 248px;
+    --lamb-banner-edge: 0.4rem;
+  }
+
+  .beef-section .beef-hub-banner.section-banner {
+    min-height: 252px;
+    --beef-banner-edge: 0.4rem;
+  }
+
+  .chicken-section .chicken-hub-banner.section-banner {
+    min-height: 254px;
+    --chicken-banner-edge: 0.4rem;
+  }
+
+  .eggs-section .eggs-hub-banner.section-banner {
+    min-height: 256px;
+    --eggs-banner-edge: 0.4rem;
   }
 }
 

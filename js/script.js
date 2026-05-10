@@ -270,7 +270,7 @@
     grids.forEach(function (grid) {
       var cat = grid.getAttribute('data-category');
       /** Lamb SKU list is rendered only inside the lamb hub/detail flow */
-      if (cat === 'lamb') {
+      if (cat === 'lamb' || cat === 'beef' || cat === 'chicken' || cat === 'eggs') {
         grid.innerHTML = '';
         return;
       }
@@ -320,6 +320,27 @@
    */
   function bindLambDecorImages(scope) {
     bindDataFallbackImages(scope, 'lamb-img-fallback');
+  }
+
+  /**
+   * @param {ParentNode | null} [scope]
+   */
+  function bindBeefDecorImages(scope) {
+    bindDataFallbackImages(scope, 'beef-img-fallback');
+  }
+
+  /**
+   * @param {ParentNode | null} [scope]
+   */
+  function bindChickenDecorImages(scope) {
+    bindDataFallbackImages(scope, 'chicken-img-fallback');
+  }
+
+  /**
+   * @param {ParentNode | null} [scope]
+   */
+  function bindEggsDecorImages(scope) {
+    bindDataFallbackImages(scope, 'eggs-img-fallback');
   }
 
   /**
@@ -513,6 +534,307 @@
     });
   }
 
+  var BEEF_ORIGIN_LABELS = {
+    'pk-traditional': 'Pakistani Traditional Beef — Cuts',
+    brazilian: 'Brazilian Premium Beef — Cuts',
+    australian: 'Australian Premium Beef — Cuts',
+    buffalo: 'Buffalo Meat Essentials — Cuts',
+    'paya-indo-pk': 'Indian / Pakistani Beef Paya',
+    'paya-au-br': 'Australian / Brazilian Beef Paya',
+  };
+
+  /**
+   * Beef hub (same behaviour as Lamb / Mutton).
+   * @param {string} cardTpl
+   * @param {Array} products
+   */
+  function initBeefSection(cardTpl, products) {
+    var section = document.getElementById('beef');
+    var hub = document.getElementById('beef-hub');
+    var detail = document.getElementById('beef-detail');
+    if (!hub || !detail) return;
+
+    bindBeefDecorImages(section);
+
+    var openBtn = hub.querySelector('[data-beef-open-detail]');
+    var backBtn = detail.querySelector('[data-beef-back]');
+    var featuredCfg = window.BREXIL_BEEF_FEATURED || {};
+    var featuredHeading = document.getElementById('beef-featured-heading');
+    if (featuredHeading && featuredCfg.sectionHeading) {
+      featuredHeading.textContent = featuredCfg.sectionHeading;
+    }
+
+    var featuredRoot = document.getElementById('beef-featured-root');
+    var fid = featuredCfg.productId || 'beef-featured-striploin';
+    var featuredProduct = products.find(function (p) {
+      return p.id === fid;
+    });
+    if (featuredRoot && featuredProduct && cardTpl) {
+      featuredRoot.innerHTML = productToHtml(cardTpl, featuredProduct);
+    } else if (featuredRoot && !featuredProduct) {
+      console.error('BREXIL_BEEF_FEATURED.productId not found in BREXIL_PRODUCTS:', fid);
+    }
+
+    var productsPanel = document.getElementById('beef-origin-products');
+    var productsGrid = document.getElementById('beef-products-grid');
+    var productsTitle = document.getElementById('beef-origin-products-title');
+
+    function renderBeefOrigin(origin) {
+      if (!productsGrid || !productsTitle || !productsPanel) return;
+      var items = products.filter(function (p) {
+        return p.category === 'beef' && p.beefOrigin === origin && !p.beefFeatured;
+      });
+      productsTitle.textContent = BEEF_ORIGIN_LABELS[origin] || 'Beef — Cuts';
+      productsGrid.innerHTML = items
+        .map(function (p) {
+          return productToHtml(cardTpl, p);
+        })
+        .join('');
+      productsPanel.hidden = false;
+      initProductImageFallbacks(productsGrid);
+      if (typeof syncProductCardCartBadges === 'function') {
+        syncProductCardCartBadges();
+      }
+      productsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function openDetail() {
+      hub.hidden = true;
+      detail.hidden = false;
+      if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDetail() {
+      hub.hidden = false;
+      detail.hidden = true;
+      if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
+      if (productsPanel) productsPanel.hidden = true;
+      if (productsGrid) productsGrid.innerHTML = '';
+      if (typeof syncProductCardCartBadges === 'function') {
+        syncProductCardCartBadges();
+      }
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', function () {
+        openDetail();
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+    if (backBtn) {
+      backBtn.addEventListener('click', function () {
+        closeDetail();
+        hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    detail.querySelectorAll('[data-beef-view-origin]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var origin = btn.getAttribute('data-beef-view-origin');
+        if (origin) renderBeefOrigin(origin);
+      });
+    });
+  }
+
+  var CHICKEN_ORIGIN_LABELS = {
+    whole: 'Fresh Whole Chicken — Cuts',
+    'boneless-fillet': 'Boneless & Fillet Cuts — Selection',
+    'bbq-grill': 'BBQ & Grill Selection — Cuts',
+    'premium-farm': 'Premium / Farm Chicken — Cuts',
+  };
+
+  /**
+   * Chicken hub (same behaviour as Lamb / Beef / Mutton).
+   * @param {string} cardTpl
+   * @param {Array} products
+   */
+  function initChickenSection(cardTpl, products) {
+    var section = document.getElementById('chicken');
+    var hub = document.getElementById('chicken-hub');
+    var detail = document.getElementById('chicken-detail');
+    if (!hub || !detail) return;
+
+    bindChickenDecorImages(section);
+
+    var openBtn = hub.querySelector('[data-chicken-open-detail]');
+    var backBtn = detail.querySelector('[data-chicken-back]');
+    var featuredCfg = window.BREXIL_CHICKEN_FEATURED || {};
+    var featuredHeading = document.getElementById('chicken-featured-heading');
+    if (featuredHeading && featuredCfg.sectionHeading) {
+      featuredHeading.textContent = featuredCfg.sectionHeading;
+    }
+
+    var featuredRoot = document.getElementById('chicken-featured-root');
+    var fid = featuredCfg.productId || 'chicken-featured-boneless-cubes';
+    var featuredProduct = products.find(function (p) {
+      return p.id === fid;
+    });
+    if (featuredRoot && featuredProduct && cardTpl) {
+      featuredRoot.innerHTML = productToHtml(cardTpl, featuredProduct);
+    } else if (featuredRoot && !featuredProduct) {
+      console.error('BREXIL_CHICKEN_FEATURED.productId not found in BREXIL_PRODUCTS:', fid);
+    }
+
+    var productsPanel = document.getElementById('chicken-origin-products');
+    var productsGrid = document.getElementById('chicken-products-grid');
+    var productsTitle = document.getElementById('chicken-origin-products-title');
+
+    function renderChickenOrigin(origin) {
+      if (!productsGrid || !productsTitle || !productsPanel) return;
+      var items = products.filter(function (p) {
+        return p.category === 'chicken' && p.chickenOrigin === origin && !p.chickenFeatured;
+      });
+      productsTitle.textContent = CHICKEN_ORIGIN_LABELS[origin] || 'Chicken — Cuts';
+      productsGrid.innerHTML = items
+        .map(function (p) {
+          return productToHtml(cardTpl, p);
+        })
+        .join('');
+      productsPanel.hidden = false;
+      initProductImageFallbacks(productsGrid);
+      if (typeof syncProductCardCartBadges === 'function') {
+        syncProductCardCartBadges();
+      }
+      productsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function openDetail() {
+      hub.hidden = true;
+      detail.hidden = false;
+      if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDetail() {
+      hub.hidden = false;
+      detail.hidden = true;
+      if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
+      if (productsPanel) productsPanel.hidden = true;
+      if (productsGrid) productsGrid.innerHTML = '';
+      if (typeof syncProductCardCartBadges === 'function') {
+        syncProductCardCartBadges();
+      }
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', function () {
+        openDetail();
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+    if (backBtn) {
+      backBtn.addEventListener('click', function () {
+        closeDetail();
+        hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    detail.querySelectorAll('[data-chicken-view-origin]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var origin = btn.getAttribute('data-chicken-view-origin');
+        if (origin) renderChickenOrigin(origin);
+      });
+    });
+  }
+
+  var EGGS_ORIGIN_LABELS = {
+    white: 'White Eggs — Trays',
+    brown: 'Brown Eggs — Trays',
+    'organic-farm': 'Organic / Farm Eggs',
+  };
+
+  /**
+   * Eggs hub (lighter layout; same hub/detail behaviour as Chicken).
+   * @param {string} cardTpl
+   * @param {Array} products
+   */
+  function initEggsSection(cardTpl, products) {
+    var section = document.getElementById('eggs');
+    var hub = document.getElementById('eggs-hub');
+    var detail = document.getElementById('eggs-detail');
+    if (!hub || !detail) return;
+
+    bindEggsDecorImages(section);
+
+    var openBtn = hub.querySelector('[data-eggs-open-detail]');
+    var backBtn = detail.querySelector('[data-eggs-back]');
+    var featuredCfg = window.BREXIL_EGGS_FEATURED || {};
+    var featuredHeading = document.getElementById('eggs-featured-heading');
+    if (featuredHeading && featuredCfg.sectionHeading) {
+      featuredHeading.textContent = featuredCfg.sectionHeading;
+    }
+
+    var featuredRoot = document.getElementById('eggs-featured-root');
+    var fid = featuredCfg.productId || 'eggs-featured-brown-farm';
+    var featuredProduct = products.find(function (p) {
+      return p.id === fid;
+    });
+    if (featuredRoot && featuredProduct && cardTpl) {
+      featuredRoot.innerHTML = productToHtml(cardTpl, featuredProduct);
+    } else if (featuredRoot && !featuredProduct) {
+      console.error('BREXIL_EGGS_FEATURED.productId not found in BREXIL_PRODUCTS:', fid);
+    }
+
+    var productsPanel = document.getElementById('eggs-origin-products');
+    var productsGrid = document.getElementById('eggs-products-grid');
+    var productsTitle = document.getElementById('eggs-origin-products-title');
+
+    function renderEggsOrigin(origin) {
+      if (!productsGrid || !productsTitle || !productsPanel) return;
+      var items = products.filter(function (p) {
+        return p.category === 'eggs' && p.eggsOrigin === origin && !p.eggsFeatured;
+      });
+      productsTitle.textContent = EGGS_ORIGIN_LABELS[origin] || 'Eggs — Products';
+      productsGrid.innerHTML = items
+        .map(function (p) {
+          return productToHtml(cardTpl, p);
+        })
+        .join('');
+      productsPanel.hidden = false;
+      initProductImageFallbacks(productsGrid);
+      if (typeof syncProductCardCartBadges === 'function') {
+        syncProductCardCartBadges();
+      }
+      productsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function openDetail() {
+      hub.hidden = true;
+      detail.hidden = false;
+      if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDetail() {
+      hub.hidden = false;
+      detail.hidden = true;
+      if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
+      if (productsPanel) productsPanel.hidden = true;
+      if (productsGrid) productsGrid.innerHTML = '';
+      if (typeof syncProductCardCartBadges === 'function') {
+        syncProductCardCartBadges();
+      }
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', function () {
+        openDetail();
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+    if (backBtn) {
+      backBtn.addEventListener('click', function () {
+        closeDetail();
+        hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    detail.querySelectorAll('[data-eggs-view-origin]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var origin = btn.getAttribute('data-eggs-view-origin');
+        if (origin) renderEggsOrigin(origin);
+      });
+    });
+  }
+
   /**
    * @param {ParentNode | Document | null} [root] — when set, only binds images inside this subtree.
    */
@@ -571,6 +893,9 @@
         renderProducts(cardTpl, products);
         initMuttonSection(cardTpl, products);
         initLambSection(cardTpl, products);
+        initBeefSection(cardTpl, products);
+        initChickenSection(cardTpl, products);
+        initEggsSection(cardTpl, products);
         initProductImageFallbacks();
       })
       .catch(function (err) {

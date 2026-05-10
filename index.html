@@ -44,7 +44,7 @@
             <div class="mutton-hub-card__media">
               <img
                 class="mutton-hub-card__img"
-                src="assets/images/mutton-category-card.jpg"
+                src="assets/images/mutton-cuts-selection.png"
                 alt=""
                 width="960"
                 height="640"
@@ -173,7 +173,7 @@
             <div class="lamb-hub-card__media">
               <img
                 class="lamb-hub-card__img"
-                src="assets/images/mutton-chops.jpg"
+                src="assets/images/lamb-premium-selection.png"
                 alt=""
                 width="960"
                 height="640"
@@ -271,38 +271,496 @@
     </section>
 
     <!-- Category: Beef -->
-    <section id="beef" class="section category-section" aria-labelledby="beef-heading">
+    <section id="beef" class="section category-section beef-section" aria-labelledby="beef-heading">
       <div class="section-inner">
-        <div class="section-banner" data-banner-key="beef" aria-hidden="true"></div>
-        <header class="section-header">
-          <h2 id="beef-heading" class="section-title">Beef</h2>
-          <p class="section-intro">Selected beef for everyday cooking and regional favourites.</p>
-        </header>
-        <div class="product-grid" data-category="beef"></div>
+        <div id="beef-hub" class="beef-hub">
+          <div class="section-banner beef-hub-banner" data-banner-key="beef" aria-hidden="true"></div>
+          <header class="section-header">
+            <h2 id="beef-heading" class="section-title">Beef</h2>
+            <p class="section-intro">Selected beef for everyday cooking and regional favourites.</p>
+          </header>
+          <button type="button" class="beef-hub-card" data-beef-open-detail aria-expanded="false">
+            <div class="beef-hub-card__media">
+              <img
+                class="beef-hub-card__img"
+                src="assets/images/beef-steak-cuts.jpg"
+                alt=""
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async"
+                data-beef-img-fallback="assets/images/beef-nihari-cut.jpg"
+              />
+            </div>
+            <div class="beef-hub-card__body">
+              <p class="beef-hub-card__eyebrow">Premium selection</p>
+              <h3 class="beef-hub-card__title">Beef</h3>
+              <p class="beef-hub-card__desc">
+                Pakistani traditional, Brazilian premium, Australian premium, buffalo essentials, and Beef Paya — explore by subcategory.
+              </p>
+              <span class="btn btn-primary beef-hub-card__cta">View Beef</span>
+            </div>
+          </button>
+          <div class="product-grid" data-category="beef" hidden aria-hidden="true"></div>
+        </div>
+
+        <div id="beef-detail" class="beef-detail" hidden>
+          <div class="beef-detail__toolbar">
+            <button type="button" class="btn btn-ghost beef-back-btn" data-beef-back>← Back</button>
+          </div>
+
+          <header class="section-header beef-detail__intro">
+            <h2 class="section-title">Beef</h2>
+            <p class="section-intro">
+              Choose a subcategory or Beef Paya option, then browse cuts. Add to cart or confirm details on WhatsApp.
+            </p>
+          </header>
+
+          <section class="beef-featured" aria-labelledby="beef-featured-heading">
+            <h3 id="beef-featured-heading" class="beef-featured__title">Today's Recommended Beef Cut</h3>
+            <div id="beef-featured-root" class="beef-featured__root"></div>
+          </section>
+
+          <section class="beef-origins" aria-label="Beef subcategories">
+            <h3 class="beef-origins__heading">Choose subcategory</h3>
+            <div class="beef-origin-grid beef-origin-grid--main">
+              <article class="beef-origin-card">
+                <div class="beef-origin-card__media">
+                  <img
+                    class="beef-origin-card__img"
+                    src="assets/images/beef-nihari-cut.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-beef-img-fallback="assets/images/beef-steak-cuts.jpg"
+                  />
+                </div>
+                <div class="beef-origin-card__body">
+                  <h4 class="beef-origin-card__title">Pakistani Traditional Beef</h4>
+                  <p class="beef-origin-card__desc">
+                    Traditional cuts ideal for nihari, curry, mince, BBQ, and everyday family cooking.
+                  </p>
+                  <button type="button" class="btn btn-primary beef-origin-card__btn" data-beef-view-origin="pk-traditional">View Cuts</button>
+                </div>
+              </article>
+              <article class="beef-origin-card">
+                <div class="beef-origin-card__media">
+                  <img
+                    class="beef-origin-card__img"
+                    src="assets/images/beef-steak-cuts.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-beef-img-fallback="assets/images/beef-nihari-cut.jpg"
+                  />
+                </div>
+                <div class="beef-origin-card__body">
+                  <h4 class="beef-origin-card__title">Brazilian Premium Beef</h4>
+                  <p class="beef-origin-card__desc">
+                    Premium beef cuts selected for steaks, grilling, and tender everyday cooking.
+                  </p>
+                  <button type="button" class="btn btn-primary beef-origin-card__btn" data-beef-view-origin="brazilian">View Cuts</button>
+                </div>
+              </article>
+              <article class="beef-origin-card">
+                <div class="beef-origin-card__media">
+                  <img
+                    class="beef-origin-card__img"
+                    src="assets/images/beef-steak-cuts.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-beef-img-fallback="assets/images/beef-nihari-cut.jpg"
+                  />
+                </div>
+                <div class="beef-origin-card__body">
+                  <h4 class="beef-origin-card__title">Australian Premium Beef</h4>
+                  <p class="beef-origin-card__desc">Premium beef known for tenderness, marbling, and rich flavour.</p>
+                  <button type="button" class="btn btn-primary beef-origin-card__btn" data-beef-view-origin="australian">View Cuts</button>
+                </div>
+              </article>
+              <article class="beef-origin-card">
+                <div class="beef-origin-card__media">
+                  <img
+                    class="beef-origin-card__img"
+                    src="assets/images/beef-nihari-cut.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-beef-img-fallback="assets/images/beef-steak-cuts.jpg"
+                  />
+                </div>
+                <div class="beef-origin-card__body">
+                  <h4 class="beef-origin-card__title">Buffalo Meat Essentials</h4>
+                  <p class="beef-origin-card__desc">
+                    Budget-friendly buffalo meat options suitable for curries, mince, and restaurant cooking.
+                  </p>
+                  <button type="button" class="btn btn-primary beef-origin-card__btn" data-beef-view-origin="buffalo">View Cuts</button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="beef-paya-block" aria-labelledby="beef-paya-heading">
+            <h3 id="beef-paya-heading" class="beef-paya-block__title">Beef Paya</h3>
+            <p class="beef-paya-block__intro">
+              Paya is listed separately from regional beef lines above. Pick a supply style, then view options.
+            </p>
+            <div class="beef-origin-grid beef-origin-grid--paya">
+              <article class="beef-origin-card">
+                <div class="beef-origin-card__media">
+                  <img
+                    class="beef-origin-card__img"
+                    src="assets/images/beef-nihari-cut.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-beef-img-fallback="assets/images/beef-steak-cuts.jpg"
+                  />
+                </div>
+                <div class="beef-origin-card__body">
+                  <h4 class="beef-origin-card__title">Indian / Pakistani Beef Paya</h4>
+                  <p class="beef-origin-card__desc">Traditional-style paya preparation channels.</p>
+                  <button type="button" class="btn btn-primary beef-origin-card__btn" data-beef-view-origin="paya-indo-pk">View option</button>
+                </div>
+              </article>
+              <article class="beef-origin-card">
+                <div class="beef-origin-card__media">
+                  <img
+                    class="beef-origin-card__img"
+                    src="assets/images/beef-steak-cuts.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-beef-img-fallback="assets/images/beef-nihari-cut.jpg"
+                  />
+                </div>
+                <div class="beef-origin-card__body">
+                  <h4 class="beef-origin-card__title">Australian / Brazilian Beef Paya</h4>
+                  <p class="beef-origin-card__desc">Supply aligned with Australian / Brazilian channels.</p>
+                  <button type="button" class="btn btn-primary beef-origin-card__btn" data-beef-view-origin="paya-au-br">View option</button>
+                </div>
+              </article>
+            </div>
+            <p class="beef-paya-note">Paya availability may vary based on daily market supply. Please confirm on WhatsApp.</p>
+          </section>
+
+          <section id="beef-origin-products" class="beef-origin-products" hidden aria-live="polite">
+            <h3 id="beef-origin-products-title" class="beef-origin-products__title"></h3>
+            <div id="beef-products-grid" class="product-grid beef-products-grid"></div>
+          </section>
+
+          <p class="beef-general-note">Custom beef cuts and bulk restaurant orders are available on request.</p>
+
+          <p class="beef-disclaimer">
+            Availability and prices may vary based on daily market supply. Please confirm on WhatsApp.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- Category: Chicken -->
-    <section id="chicken" class="section category-section section-alt" aria-labelledby="chicken-heading">
+    <section id="chicken" class="section category-section section-alt chicken-section" aria-labelledby="chicken-heading">
       <div class="section-inner">
-        <div class="section-banner" data-banner-key="chicken" aria-hidden="true"></div>
-        <header class="section-header">
-          <h2 id="chicken-heading" class="section-title">Chicken</h2>
-          <p class="section-intro">Fresh poultry, cleaned and portioned for your kitchen.</p>
-        </header>
-        <div class="product-grid" data-category="chicken"></div>
+        <div id="chicken-hub" class="chicken-hub">
+          <div class="section-banner chicken-hub-banner" data-banner-key="chicken" aria-hidden="true"></div>
+          <header class="section-header">
+            <h2 id="chicken-heading" class="section-title">Chicken</h2>
+            <p class="section-intro">Fresh poultry, cleaned and portioned for your kitchen.</p>
+          </header>
+          <button type="button" class="chicken-hub-card" data-chicken-open-detail aria-expanded="false">
+            <div class="chicken-hub-card__media">
+              <img
+                class="chicken-hub-card__img"
+                src="assets/images/chicken-fresh-broiler.jpg"
+                alt=""
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async"
+                data-chicken-img-fallback="assets/images/chicken-boneless.jpg"
+              />
+            </div>
+            <div class="chicken-hub-card__body">
+              <p class="chicken-hub-card__eyebrow">Premium selection</p>
+              <h3 class="chicken-hub-card__title">Chicken</h3>
+              <p class="chicken-hub-card__desc">
+                Whole birds, boneless &amp; fillet, BBQ &amp; grill cuts, and premium farm-style chicken — browse by subcategory.
+              </p>
+              <span class="btn btn-primary chicken-hub-card__cta">View Chicken</span>
+            </div>
+          </button>
+          <div class="product-grid" data-category="chicken" hidden aria-hidden="true"></div>
+        </div>
+
+        <div id="chicken-detail" class="chicken-detail" hidden>
+          <div class="chicken-detail__toolbar">
+            <button type="button" class="btn btn-ghost chicken-back-btn" data-chicken-back>← Back</button>
+          </div>
+
+          <header class="section-header chicken-detail__intro">
+            <h2 class="section-title">Chicken</h2>
+            <p class="section-intro">Choose a subcategory, then browse cuts. Add to cart or confirm details on WhatsApp.</p>
+          </header>
+
+          <section class="chicken-featured" aria-labelledby="chicken-featured-heading">
+            <h3 id="chicken-featured-heading" class="chicken-featured__title">Today's Recommended Chicken Cut</h3>
+            <div id="chicken-featured-root" class="chicken-featured__root"></div>
+          </section>
+
+          <section class="chicken-origins" aria-label="Chicken subcategories">
+            <h3 class="chicken-origins__heading">Choose subcategory</h3>
+            <div class="chicken-origin-grid">
+              <article class="chicken-origin-card">
+                <div class="chicken-origin-card__media">
+                  <img
+                    class="chicken-origin-card__img"
+                    src="assets/images/chicken-fresh-broiler.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-chicken-img-fallback="assets/images/chicken-boneless.jpg"
+                  />
+                </div>
+                <div class="chicken-origin-card__body">
+                  <h4 class="chicken-origin-card__title">Fresh Whole Chicken</h4>
+                  <p class="chicken-origin-card__desc">
+                    Fresh whole chicken cleaned and prepared for everyday cooking and family meals.
+                  </p>
+                  <button type="button" class="btn btn-primary chicken-origin-card__btn" data-chicken-view-origin="whole">View Cuts</button>
+                </div>
+              </article>
+              <article class="chicken-origin-card">
+                <div class="chicken-origin-card__media">
+                  <img
+                    class="chicken-origin-card__img"
+                    src="assets/images/chicken-boneless.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-chicken-img-fallback="assets/images/chicken-fresh-broiler.jpg"
+                  />
+                </div>
+                <div class="chicken-origin-card__body">
+                  <h4 class="chicken-origin-card__title">Boneless &amp; Fillet Cuts</h4>
+                  <p class="chicken-origin-card__desc">
+                    Convenient boneless chicken cuts prepared for quick cooking, grilling, and meal prep.
+                  </p>
+                  <button type="button" class="btn btn-primary chicken-origin-card__btn" data-chicken-view-origin="boneless-fillet">
+                    View Cuts
+                  </button>
+                </div>
+              </article>
+              <article class="chicken-origin-card">
+                <div class="chicken-origin-card__media">
+                  <img
+                    class="chicken-origin-card__img"
+                    src="assets/images/chicken-fresh-broiler.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-chicken-img-fallback="assets/images/chicken-boneless.jpg"
+                  />
+                </div>
+                <div class="chicken-origin-card__body">
+                  <h4 class="chicken-origin-card__title">BBQ &amp; Grill Selection</h4>
+                  <p class="chicken-origin-card__desc">
+                    Selected chicken cuts ideal for BBQ, grilling, frying, and restaurant-style cooking.
+                  </p>
+                  <button type="button" class="btn btn-primary chicken-origin-card__btn" data-chicken-view-origin="bbq-grill">View Cuts</button>
+                </div>
+              </article>
+              <article class="chicken-origin-card">
+                <div class="chicken-origin-card__media">
+                  <img
+                    class="chicken-origin-card__img"
+                    src="assets/images/chicken-boneless.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-chicken-img-fallback="assets/images/chicken-fresh-broiler.jpg"
+                  />
+                </div>
+                <div class="chicken-origin-card__body">
+                  <h4 class="chicken-origin-card__title">Premium / Farm Chicken</h4>
+                  <p class="chicken-origin-card__desc">
+                    Carefully sourced farm-style chicken with richer texture and traditional taste.
+                  </p>
+                  <button type="button" class="btn btn-primary chicken-origin-card__btn" data-chicken-view-origin="premium-farm">View Cuts</button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="chicken-origin-products" class="chicken-origin-products" hidden aria-live="polite">
+            <h3 id="chicken-origin-products-title" class="chicken-origin-products__title"></h3>
+            <div id="chicken-products-grid" class="product-grid chicken-products-grid"></div>
+          </section>
+
+          <p class="chicken-custom-note">Custom chicken cutting and restaurant bulk orders are available on request.</p>
+
+          <p class="chicken-disclaimer">
+            Availability and prices may vary based on daily market supply. Please confirm on WhatsApp.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- Category: Eggs -->
-    <section id="eggs" class="section category-section" aria-labelledby="eggs-heading">
+    <section id="eggs" class="section category-section eggs-section" aria-labelledby="eggs-heading">
       <div class="section-inner">
-        <div class="section-banner" data-banner-key="eggs" aria-hidden="true"></div>
-        <header class="section-header">
-          <h2 id="eggs-heading" class="section-title">Eggs</h2>
-          <p class="section-intro">Reliable trays for families who cook every day.</p>
-        </header>
-        <div class="product-grid" data-category="eggs"></div>
+        <div id="eggs-hub" class="eggs-hub">
+          <div class="section-banner eggs-hub-banner" data-banner-key="eggs" aria-hidden="true"></div>
+          <header class="section-header">
+            <h2 id="eggs-heading" class="section-title">Eggs</h2>
+            <p class="section-intro">Reliable trays for families who cook every day.</p>
+          </header>
+          <button type="button" class="eggs-hub-card" data-eggs-open-detail aria-expanded="false">
+            <div class="eggs-hub-card__media">
+              <img
+                class="eggs-hub-card__img"
+                src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&amp;fit=crop&amp;w=900&amp;q=85"
+                alt=""
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async"
+                data-eggs-img-fallback="assets/images/eggs-farm-origin.png"
+              />
+            </div>
+            <div class="eggs-hub-card__body">
+              <p class="eggs-hub-card__eyebrow">Daily essentials</p>
+              <h3 class="eggs-hub-card__title">Eggs</h3>
+              <p class="eggs-hub-card__desc">
+                White, brown, and farm-style trays — pick a type, then choose your tray size or style.
+              </p>
+              <span class="btn btn-primary eggs-hub-card__cta">View Eggs</span>
+            </div>
+          </button>
+          <div class="product-grid" data-category="eggs" hidden aria-hidden="true"></div>
+        </div>
+
+        <div id="eggs-detail" class="eggs-detail" hidden>
+          <div class="eggs-detail__toolbar">
+            <button type="button" class="btn btn-ghost eggs-back-btn" data-eggs-back>← Back</button>
+          </div>
+
+          <header class="section-header eggs-detail__intro">
+            <h2 class="section-title">Eggs</h2>
+            <p class="section-intro">Choose a subcategory, then browse trays. Add to cart or confirm on WhatsApp.</p>
+          </header>
+
+          <section class="eggs-featured" aria-labelledby="eggs-featured-heading">
+            <h3 id="eggs-featured-heading" class="eggs-featured__title">Today's Recommended Eggs</h3>
+            <div id="eggs-featured-root" class="eggs-featured__root"></div>
+          </section>
+
+          <section class="eggs-origins" aria-label="Egg subcategories">
+            <h3 class="eggs-origins__heading">Choose subcategory</h3>
+            <div class="eggs-origin-grid">
+              <article class="eggs-origin-card">
+                <div class="eggs-origin-card__media">
+                  <img
+                    class="eggs-origin-card__img"
+                    src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&amp;fit=crop&amp;w=900&amp;q=85"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-eggs-img-fallback="assets/images/eggs-farm-origin.png"
+                  />
+                </div>
+                <div class="eggs-origin-card__body">
+                  <h4 class="eggs-origin-card__title">White Eggs</h4>
+                  <p class="eggs-origin-card__desc">
+                    Fresh white eggs for everyday household and restaurant use.
+                  </p>
+                  <button type="button" class="btn btn-primary eggs-origin-card__btn" data-eggs-view-origin="white">
+                    View trays
+                  </button>
+                </div>
+              </article>
+              <article class="eggs-origin-card">
+                <div class="eggs-origin-card__media">
+                  <img
+                    class="eggs-origin-card__img"
+                    src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&amp;fit=crop&amp;w=900&amp;q=85"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-eggs-img-fallback="assets/images/eggs-farm-origin.png"
+                  />
+                </div>
+                <div class="eggs-origin-card__body">
+                  <h4 class="eggs-origin-card__title">Brown Eggs</h4>
+                  <p class="eggs-origin-card__desc">
+                    Premium brown eggs with rich taste and reliable freshness.
+                  </p>
+                  <button type="button" class="btn btn-primary eggs-origin-card__btn" data-eggs-view-origin="brown">
+                    View trays
+                  </button>
+                </div>
+              </article>
+              <article class="eggs-origin-card">
+                <div class="eggs-origin-card__media">
+                  <img
+                    class="eggs-origin-card__img"
+                    src="assets/images/eggs-farm-origin.png"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-eggs-img-fallback="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&amp;fit=crop&amp;w=900&amp;q=85"
+                  />
+                </div>
+                <div class="eggs-origin-card__body">
+                  <h4 class="eggs-origin-card__title">Organic / Farm Eggs</h4>
+                  <p class="eggs-origin-card__desc">
+                    Farm-style eggs selected for freshness and natural quality.
+                  </p>
+                  <button type="button" class="btn btn-primary eggs-origin-card__btn" data-eggs-view-origin="organic-farm">
+                    View options
+                  </button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="eggs-origin-products" class="eggs-origin-products" hidden aria-live="polite">
+            <h3 id="eggs-origin-products-title" class="eggs-origin-products__title"></h3>
+            <div id="eggs-products-grid" class="product-grid eggs-products-grid"></div>
+          </section>
+
+          <p class="eggs-bulk-note">Bulk trays and restaurant supply are available on request.</p>
+
+          <p class="eggs-disclaimer">
+            Availability and prices may vary based on daily market supply. Please confirm on WhatsApp.
+          </p>
+        </div>
       </div>
     </section>
 

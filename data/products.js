@@ -3,6 +3,7 @@
  * Edit items here; the site renders from this list.
  *
  * category: 'beef' | 'chicken' | 'mutton' | 'lamb' | 'eggs' (internal keys — keep as-is)
+ * eggsOrigin (eggs only): 'white' | 'brown' | 'organic-farm' — matches data-eggs-view-origin in index.html
  * image: Unsplash URLs (raw retail / butcher / prep — no live animals, no plated restaurant meals)
  */
 var IMG_BEEF =
@@ -31,107 +32,356 @@ window.BREXIL_LAMB_FEATURED = {
   productId: 'lamb-recommended-chops',
 };
 
+/**
+ * Beef “today’s pick” — set productId to any beef sku below (not paya-only rows), or edit that product.
+ */
+window.BREXIL_BEEF_FEATURED = {
+  sectionHeading: "Today's Recommended Beef Cut",
+  productId: 'beef-featured-striploin',
+};
+
+/**
+ * Chicken “today’s pick” — set productId to any chicken sku in this file, or edit that product.
+ */
+window.BREXIL_CHICKEN_FEATURED = {
+  sectionHeading: "Today's Recommended Chicken Cut",
+  productId: 'chicken-featured-boneless-cubes',
+};
+
+/**
+ * Eggs “today’s pick” — set productId to any eggs sku below (not featured-only duplicates), or edit that product.
+ */
+window.BREXIL_EGGS_FEATURED = {
+  sectionHeading: "Today's Recommended Eggs",
+  productId: 'eggs-featured-brown-farm',
+};
+
 window.BREXIL_PRODUCTS = [
 
-  /* Beef */
+  /* Beef — featured (hub detail only) */
   {
-    id: 'beef-mince-keema',
+    id: 'beef-featured-striploin',
     category: 'beef',
-    name: 'Beef Mince (Keema)',
-    description: 'Freshly minced daily with hygienic handling for premium family meals.',
-    price: 'AED —',
-    image: 'https://www.freefoodphotos.com/imagelibrary/meat/slides/mince.jpg',
-  },
-  {
-    id: 'beef-steak-cuts',
-    category: 'beef',
-    name: 'Beef Steak Cuts',
-    description: 'Quality steak portions, carefully trimmed for tender home cooking.',
+    beefFeatured: true,
+    name: 'Premium Striploin – Australian',
+    description: 'Marbled striploin suited to grilling and premium home dinners.',
     price: 'AED —',
     image: 'assets/images/beef-steak-cuts.jpg',
   },
+
+  /* Beef — Pakistani Traditional */
   {
-    id: 'beef-nihari-cut',
+    id: 'beef-pk-nihari',
     category: 'beef',
-    name: 'Nihari Cut',
-    description: 'Premium nihari pieces selected for rich flavor and slow-cooked depth.',
+    beefOrigin: 'pk-traditional',
+    name: 'Beef Nihari Cut',
+    description: 'Traditional cuts ideal for nihari, curry, mince, BBQ, and everyday family cooking.',
     price: 'AED —',
     image: 'assets/images/beef-nihari-cut.jpg',
   },
   {
-    id: 'beef-bbq-cuts',
+    id: 'beef-pk-mince',
     category: 'beef',
-    name: 'BBQ Cuts',
-    description: 'Clean, quality barbecue cuts prepared for grills and gatherings.',
+    beefOrigin: 'pk-traditional',
+    name: 'Beef Mince',
+    description: 'Fresh mince for keema, stuffing, and daily curries.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=900&q=85',
+    image: IMG_BEEF,
   },
   {
-    id: 'beef-paya',
+    id: 'beef-pk-bbq',
     category: 'beef',
-    name: 'Beef Paya',
-    description: 'Thoroughly cleaned paya, fresh and hygienic for traditional recipes.',
+    beefOrigin: 'pk-traditional',
+    name: 'Beef BBQ Cut',
+    description: 'Bone-in and balanced pieces for grills and charcoal cooking.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1625944525903-dc5cdd0a2f03?auto=format&fit=crop&w=900&q=85',
+    image: 'assets/images/beef-steak-cuts.jpg',
   },
   {
-    id: 'beef-boneless-boti-tikka',
+    id: 'beef-pk-boneless-curry',
     category: 'beef',
-    name: 'Boneless Beef (Boti / Tikka Cut)',
-    description: 'Premium boneless cubes cut evenly for tikka, curry, and stir-fry.',
+    beefOrigin: 'pk-traditional',
+    name: 'Boneless Curry Cut',
+    description: 'Boneless pieces cut for even cooking in rich gravies.',
     price: 'AED —',
-    image:
-      'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=900&q=85',
+    image: IMG_BEEF,
   },
 
-  /* Chicken */
+  /* Beef — Brazilian Premium */
   {
-    id: 'chicken-fresh-broiler',
+    id: 'beef-br-ribeye',
+    category: 'beef',
+    beefOrigin: 'brazilian',
+    name: 'Ribeye Steak',
+    description: 'Premium beef selected for steaks, grilling, and tender everyday cooking.',
+    price: 'AED —',
+    image: 'assets/images/beef-steak-cuts.jpg',
+  },
+  {
+    id: 'beef-br-tenderloin',
+    category: 'beef',
+    beefOrigin: 'brazilian',
+    name: 'Tenderloin',
+    description: 'Lean tenderloin portions for quick searing or roasting.',
+    price: 'AED —',
+    image: IMG_BEEF,
+  },
+  {
+    id: 'beef-br-steak-cut',
+    category: 'beef',
+    beefOrigin: 'brazilian',
+    name: 'Steak Cut',
+    description: 'Versatile steak portions trimmed for the grill or pan.',
+    price: 'AED —',
+    image: 'assets/images/beef-steak-cuts.jpg',
+  },
+  {
+    id: 'beef-br-boneless-cubes',
+    category: 'beef',
+    beefOrigin: 'brazilian',
+    name: 'Boneless Beef Cubes',
+    description: 'Even cubes for stir-fry, tikka-style prep, and fast meals.',
+    price: 'AED —',
+    image: IMG_BEEF,
+  },
+  {
+    id: 'beef-br-bbq-premium',
+    category: 'beef',
+    beefOrigin: 'brazilian',
+    name: 'BBQ Premium Cuts',
+    description: 'Selected premium barbecue cuts for gatherings.',
+    price: 'AED —',
+    image: 'assets/images/beef-steak-cuts.jpg',
+  },
+
+  /* Beef — Australian Premium */
+  {
+    id: 'beef-au-premium-ribeye',
+    category: 'beef',
+    beefOrigin: 'australian',
+    name: 'Premium Ribeye',
+    description: 'Premium beef known for tenderness, marbling, and rich flavour.',
+    price: 'AED —',
+    image: 'assets/images/beef-steak-cuts.jpg',
+  },
+  {
+    id: 'beef-au-striploin',
+    category: 'beef',
+    beefOrigin: 'australian',
+    name: 'Striploin',
+    description: 'Balanced marbling — ideal for steaks and roasting.',
+    price: 'AED —',
+    image: IMG_BEEF,
+  },
+  {
+    id: 'beef-au-tenderloin',
+    category: 'beef',
+    beefOrigin: 'australian',
+    name: 'Tenderloin',
+    description: 'Buttery tenderloin for premium home cooking.',
+    price: 'AED —',
+    image: 'assets/images/beef-steak-cuts.jpg',
+  },
+  {
+    id: 'beef-au-steak-selection',
+    category: 'beef',
+    beefOrigin: 'australian',
+    name: 'Steak Selection',
+    description: 'Curated steak selection — confirm preferred thickness on WhatsApp.',
+    price: 'AED —',
+    image: IMG_BEEF,
+  },
+
+  /* Beef — Buffalo Meat Essentials */
+  {
+    id: 'beef-buf-boneless',
+    category: 'beef',
+    beefOrigin: 'buffalo',
+    name: 'Buffalo Boneless',
+    description: 'Budget-friendly buffalo boneless options for curries and everyday cooking.',
+    price: 'AED —',
+    image: IMG_BEEF,
+  },
+  {
+    id: 'beef-buf-mince',
+    category: 'beef',
+    beefOrigin: 'buffalo',
+    name: 'Buffalo Mince',
+    description: 'Hearty mince for keema and bulk family recipes.',
+    price: 'AED —',
+    image: 'assets/images/beef-nihari-cut.jpg',
+  },
+  {
+    id: 'beef-buf-curry-cut',
+    category: 'beef',
+    beefOrigin: 'buffalo',
+    name: 'Buffalo Curry Cut',
+    description: 'Bone-in curry pieces suited to slow-simmered dishes.',
+    price: 'AED —',
+    image: IMG_BEEF,
+  },
+
+  /* Beef — Paya (separate from origin rows above) */
+  {
+    id: 'beef-paya-indo-pk',
+    category: 'beef',
+    beefOrigin: 'paya-indo-pk',
+    name: 'Indian / Pakistani Beef Paya',
+    description: 'Cleaned paya suited to traditional nihari-style and slow-cooked recipes.',
+    price: 'AED —',
+    image: 'assets/images/beef-nihari-cut.jpg',
+  },
+  {
+    id: 'beef-paya-au-br',
+    category: 'beef',
+    beefOrigin: 'paya-au-br',
+    name: 'Australian / Brazilian Beef Paya',
+    description: 'Paya sourced via Australian / Brazilian supply channels — confirm on WhatsApp.',
+    price: 'AED —',
+    image: IMG_BEEF,
+  },
+
+  /* Chicken — featured (hub detail only) */
+  {
+    id: 'chicken-featured-boneless-cubes',
     category: 'chicken',
-    name: 'Fresh Broiler Chicken',
-    description: 'Fresh daily broiler chicken, hygienically cleaned and chilled.',
+    chickenFeatured: true,
+    name: 'Chicken Boneless Cubes – Fresh Cut',
+    description: 'Neat boneless cubes — ideal for quick curries, stir-fry, and meal prep.',
+    price: 'AED —',
+    image: 'assets/images/chicken-boneless.jpg',
+  },
+
+  /* Chicken — Fresh Whole Chicken */
+  {
+    id: 'chicken-whole-small',
+    category: 'chicken',
+    chickenOrigin: 'whole',
+    name: 'Small Chicken',
+    description: 'Fresh whole chicken cleaned and prepared for everyday cooking and family meals.',
     price: 'AED —',
     image: 'assets/images/chicken-fresh-broiler.jpg',
   },
   {
-    id: 'chicken-desi-on-order',
+    id: 'chicken-whole-medium',
     category: 'chicken',
-    name: 'Freshly Slaughtered Desi Chicken (On Order)',
-    description: 'Prepared on request with premium hygiene and careful handling.',
+    chickenOrigin: 'whole',
+    name: 'Medium Chicken',
+    description: 'Fresh whole chicken cleaned and prepared for everyday cooking and family meals.',
     price: 'AED —',
-    image: IMG_CHICKEN,
+    image: 'assets/images/chicken-fresh-broiler.jpg',
   },
   {
-    id: 'chicken-boneless',
+    id: 'chicken-whole-large',
     category: 'chicken',
-    name: 'Chicken Boneless',
-    description: 'Quality boneless cuts, neatly trimmed for quick and clean cooking.',
+    chickenOrigin: 'whole',
+    name: 'Large Chicken',
+    description: 'Fresh whole chicken cleaned and prepared for everyday cooking and family meals.',
+    price: 'AED —',
+    image: 'assets/images/chicken-fresh-broiler.jpg',
+  },
+
+  /* Chicken — Boneless & Fillet Cuts */
+  {
+    id: 'chicken-breast-fillet',
+    category: 'chicken',
+    chickenOrigin: 'boneless-fillet',
+    name: 'Chicken Breast Fillet',
+    description: 'Convenient boneless chicken cuts prepared for quick cooking, grilling, and meal prep.',
     price: 'AED —',
     image: 'assets/images/chicken-boneless.jpg',
   },
   {
+    id: 'chicken-boneless-cubes',
+    category: 'chicken',
+    chickenOrigin: 'boneless-fillet',
+    name: 'Chicken Boneless Cubes',
+    description: 'Convenient boneless chicken cuts prepared for quick cooking, grilling, and meal prep.',
+    price: 'AED —',
+    image: 'assets/images/chicken-boneless.jpg',
+  },
+  {
+    id: 'chicken-strips',
+    category: 'chicken',
+    chickenOrigin: 'boneless-fillet',
+    name: 'Chicken Strips',
+    description: 'Convenient boneless chicken cuts prepared for quick cooking, grilling, and meal prep.',
+    price: 'AED —',
+    image: IMG_CHICKEN,
+  },
+  {
     id: 'chicken-mince',
     category: 'chicken',
+    chickenOrigin: 'boneless-fillet',
     name: 'Chicken Mince',
-    description: 'Fresh premium mince prepared in hygienic batches for daily recipes.',
+    description: 'Convenient boneless chicken cuts prepared for quick cooking, grilling, and meal prep.',
+    price: 'AED —',
+    image: IMG_CHICKEN,
+  },
+
+  /* Chicken — BBQ & Grill Selection */
+  {
+    id: 'chicken-bbq-cut',
+    category: 'chicken',
+    chickenOrigin: 'bbq-grill',
+    name: 'Chicken BBQ Cut',
+    description: 'Selected chicken cuts ideal for BBQ, grilling, frying, and restaurant-style cooking.',
+    price: 'AED —',
+    image: 'assets/images/chicken-fresh-broiler.jpg',
+  },
+  {
+    id: 'chicken-wings',
+    category: 'chicken',
+    chickenOrigin: 'bbq-grill',
+    name: 'Chicken Wings',
+    description: 'Selected chicken cuts ideal for BBQ, grilling, frying, and restaurant-style cooking.',
     price: 'AED —',
     image: IMG_CHICKEN,
   },
   {
     id: 'chicken-drumsticks',
     category: 'chicken',
+    chickenOrigin: 'bbq-grill',
     name: 'Chicken Drumsticks',
-    description: 'Juicy, quality drumsticks cleaned well and packed with care.',
+    description: 'Selected chicken cuts ideal for BBQ, grilling, frying, and restaurant-style cooking.',
     price: 'AED —',
     image: IMG_CHICKEN,
   },
   {
-    id: 'chicken-wings',
+    id: 'chicken-thighs',
     category: 'chicken',
-    name: 'Chicken Wings',
-    description: 'Fresh hygienic wings in premium portions for family platters.',
+    chickenOrigin: 'bbq-grill',
+    name: 'Chicken Thighs',
+    description: 'Selected chicken cuts ideal for BBQ, grilling, frying, and restaurant-style cooking.',
+    price: 'AED —',
+    image: 'assets/images/chicken-boneless.jpg',
+  },
+
+  /* Chicken — Premium / Farm Chicken */
+  {
+    id: 'chicken-desi',
+    category: 'chicken',
+    chickenOrigin: 'premium-farm',
+    name: 'Desi Chicken',
+    description: 'Carefully sourced farm-style chicken with richer texture and traditional taste.',
+    price: 'AED —',
+    image: IMG_CHICKEN,
+  },
+  {
+    id: 'chicken-farm-fresh',
+    category: 'chicken',
+    chickenOrigin: 'premium-farm',
+    name: 'Farm Fresh Chicken',
+    description: 'Carefully sourced farm-style chicken with richer texture and traditional taste.',
+    price: 'AED —',
+    image: 'assets/images/chicken-fresh-broiler.jpg',
+  },
+  {
+    id: 'chicken-fresh-slaughtered',
+    category: 'chicken',
+    chickenOrigin: 'premium-farm',
+    name: 'Freshly Slaughtered Chicken',
+    description: 'Carefully sourced farm-style chicken with richer texture and traditional taste.',
     price: 'AED —',
     image: IMG_CHICKEN,
   },
@@ -366,37 +616,74 @@ window.BREXIL_PRODUCTS = [
     image: 'assets/images/mutton-chops.jpg',
   },
 
-  /* Eggs */
+  /* Eggs — featured (hub detail only) */
   {
-    id: 'eggs-white-medium-large',
+    id: 'eggs-featured-brown-farm',
     category: 'eggs',
-    name: 'White Eggs (Medium / Large)',
-    description: 'Fresh white eggs, hygienically packed for daily family use.',
+    eggsFeatured: true,
+    name: 'Fresh Brown Eggs – Farm Selection',
+    description: 'Premium brown eggs selected for consistent freshness and everyday cooking.',
+    price: 'AED —',
+    image: IMG_EGGS,
+  },
+
+  /* Eggs — White */
+  {
+    id: 'eggs-white-medium-tray',
+    category: 'eggs',
+    eggsOrigin: 'white',
+    name: 'White Eggs Medium Tray',
+    description: 'Fresh white eggs for everyday household and restaurant use.',
     price: 'AED —',
     image: IMG_EGGS,
   },
   {
-    id: 'eggs-brown',
+    id: 'eggs-white-large-tray',
     category: 'eggs',
-    name: 'Brown Eggs',
-    description: 'Premium brown eggs selected for freshness, quality, and clean handling.',
+    eggsOrigin: 'white',
+    name: 'White Eggs Large Tray',
+    description: 'Fresh white eggs for everyday household and restaurant use.',
     price: 'AED —',
     image: IMG_EGGS,
   },
+
+  /* Eggs — Brown */
+  {
+    id: 'eggs-brown-medium-tray',
+    category: 'eggs',
+    eggsOrigin: 'brown',
+    name: 'Brown Eggs Medium Tray',
+    description: 'Premium brown eggs with rich taste and reliable freshness.',
+    price: 'AED —',
+    image: IMG_EGGS,
+  },
+  {
+    id: 'eggs-brown-large-tray',
+    category: 'eggs',
+    eggsOrigin: 'brown',
+    name: 'Brown Eggs Large Tray',
+    description: 'Premium brown eggs with rich taste and reliable freshness.',
+    price: 'AED —',
+    image: IMG_EGGS,
+  },
+
+  /* Eggs — Organic / Farm */
   {
     id: 'eggs-organic',
     category: 'eggs',
+    eggsOrigin: 'organic-farm',
     name: 'Organic Eggs',
-    description: 'Quality organic eggs supplied fresh and packed with hygienic care.',
+    description: 'Farm-style eggs selected for freshness and natural quality.',
     price: 'AED —',
-    image: IMG_EGGS,
+    image: 'assets/images/eggs-farm-origin.png',
   },
   {
-    id: 'eggs-desi-farm-fresh',
+    id: 'eggs-free-range',
     category: 'eggs',
-    name: 'Farm Fresh Desi Eggs',
-    description: 'Farm-fresh desi eggs for households seeking premium everyday nutrition.',
+    eggsOrigin: 'organic-farm',
+    name: 'Free Range Eggs',
+    description: 'Farm-style eggs selected for freshness and natural quality.',
     price: 'AED —',
-    image: IMG_EGGS,
+    image: 'assets/images/eggs-farm-origin.png',
   },
 ];
