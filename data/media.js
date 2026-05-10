@@ -14,6 +14,8 @@ window.BREXIL_MEDIA = {
       'https://images.unsplash.com/photo-1708782342351-74f02e9a16c4?auto=format&fit=crop&w=1600&q=85',
     mutton:
       'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1600&q=85',
+    lamb:
+      'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1600&q=85',
     eggs: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=1600&q=85',
     about: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1600&q=85',
   },

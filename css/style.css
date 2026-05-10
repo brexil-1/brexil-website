@@ -265,77 +265,106 @@ code,
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: clamp(3.2rem, 7vw, 5rem) var(--space-md) clamp(2.2rem, 5vw, 3.4rem);
-  background-color: var(--color-bg);
+  padding-top: clamp(3.2rem, 7vw, 5rem);
+  padding-bottom: clamp(2.2rem, 5vw, 3.4rem);
+  padding-left: clamp(1.25rem, 7vw, 100px);
+  padding-right: var(--space-md);
+  background-color: #dfe9f2;
   border-bottom: 1px solid var(--color-border);
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 140px;
-  background: linear-gradient(to top, rgba(8, 8, 8, 0.95), rgba(8, 8, 8, 0));
-  pointer-events: none;
 }
 
 .hero__media {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
+  inset: 0;
   z-index: 0;
-  background-image: url("../assets/images/dubai-skyline.jpg") !important;
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
-  opacity: 0.15;
   pointer-events: none;
+  /* Prevent inline hero background from script.js from stacking a dark gradient under the photo */
+  background: none !important;
 }
 
+/* Photo layer: full hero, bright daytime feel (filter does not affect text overlay) */
+.hero__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #dfe9f2;
+  background-image: url("../assets/images/dubai-skyline-day.png") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(1.2) contrast(1.05);
+}
+
+/* Soft white layer behind left copy — skyline stays bright on the right */
 .hero__media::after {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 1;
   pointer-events: none;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.65) 35%,
+    rgba(255, 255, 255, 0.25) 60%,
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent 100%
+  );
 }
 
 .hero-inner {
   position: relative;
-  z-index: 1;
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: clamp(1rem, 2.4vw, 1.8rem) 0;
-  max-width: min(100%, 44rem);
-}
-
-.hero-eyebrow {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-gold-muted);
-  margin: 0 0 var(--space-sm);
+  z-index: 2;
+  max-width: 600px;
+  width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  padding: clamp(0.75rem, 2vw, 1.25rem) 0;
+  text-align: left;
+  box-sizing: border-box;
 }
 
 .hero-title {
   font-size: clamp(2.2rem, 6vw, 3.6rem);
-  margin: 0 0 1rem;
-  max-width: 15ch;
+  margin: 0 0 0.65rem;
+  max-width: 22ch;
   text-wrap: balance;
+  color: #111111;
+  text-shadow: none;
+}
+
+.hero-product-line {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-sans);
+  font-size: clamp(0.92rem, 2vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #b8962e;
+  text-shadow: none;
+}
+
+.hero-product-line::before {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin-bottom: 0.55rem;
+  background: linear-gradient(90deg, #b8962e, rgba(184, 150, 46, 0.25));
+  border-radius: 1px;
 }
 
 .hero-lead {
   font-size: clamp(1rem, 2.1vw, 1.14rem);
   max-width: min(38rem, 100%);
   margin-bottom: var(--space-lg);
-  color: rgba(242, 239, 232, 0.86);
+  color: #222222;
+  text-shadow: none;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
   gap: var(--space-sm);
   margin-bottom: var(--space-md);
 }
@@ -344,27 +373,473 @@ code,
   margin: 0;
   font-size: 0.88rem;
   line-height: 1.5;
-  color: rgba(242, 239, 232, 0.7);
+  color: #333333;
+  text-shadow: none;
 }
 
 .hero_media {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  background-image: url("../assets/images/dubai-skyline.jpg");
-  background-size: cover;
-  background-position: center right;
-  opacity: 0.15;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
+}
+
+.hero_media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #dfe9f2;
+  background-image: url("../assets/images/dubai-skyline-day.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(1.2) contrast(1.05);
 }
 
 .hero_media::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.65) 35%,
+    rgba(255, 255, 255, 0.25) 60%,
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent 100%
+  );
+}
+
+/* ----- Mutton hub & detail ----- */
+.mutton-section .mutton-hub-banner {
+  margin-bottom: var(--space-lg);
+}
+
+.mutton-hub-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: stretch;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, rgba(21, 21, 21, 0.98), rgba(10, 10, 10, 0.92));
+  box-shadow: var(--shadow-premium);
+  cursor: pointer;
+  overflow: hidden;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mutton-hub-card:hover {
+  border-color: rgba(228, 199, 122, 0.45);
+  transform: translateY(-2px);
+}
+
+.mutton-hub-card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.mutton-hub-card__media {
+  position: relative;
+  min-height: 220px;
+  background: #111;
+}
+
+.mutton-hub-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mutton-hub-card__body {
+  padding: clamp(1.2rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.mutton-hub-card__eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+}
+
+.mutton-hub-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.mutton-hub-card__desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text-soft);
+}
+
+.mutton-hub-card__cta {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+  pointer-events: none;
+}
+
+.mutton-detail__toolbar {
+  margin-bottom: var(--space-md);
+}
+
+.mutton-detail__intro {
+  margin-bottom: var(--space-lg);
+}
+
+.mutton-featured {
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.mutton-featured__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.mutton-featured__root {
+  max-width: 520px;
+}
+
+.mutton-featured__root .product-card {
+  margin: 0;
+}
+
+.mutton-origins__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.mutton-origin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.mutton-origin-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.mutton-origin-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #111;
+}
+
+.mutton-origin-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mutton-origin-card__body {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.mutton-origin-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+.mutton-origin-card__desc {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-text-soft);
+  flex: 1;
+}
+
+.mutton-origin-card__btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.mutton-origin-products {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.mutton-origin-products__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.mutton-disclaimer {
+  margin: clamp(2rem, 5vw, 3rem) 0 0;
+  padding: var(--space-md);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  border: 1px solid rgba(201, 169, 98, 0.25);
+  border-radius: var(--radius);
+  background: rgba(8, 8, 8, 0.35);
+}
+
+/* ----- Lamb hub & detail (matches Mutton) ----- */
+.lamb-section .lamb-hub-banner {
+  margin-bottom: var(--space-lg);
+}
+
+.lamb-hub-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: stretch;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, rgba(21, 21, 21, 0.98), rgba(10, 10, 10, 0.92));
+  box-shadow: var(--shadow-premium);
+  cursor: pointer;
+  overflow: hidden;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lamb-hub-card:hover {
+  border-color: rgba(228, 199, 122, 0.45);
+  transform: translateY(-2px);
+}
+
+.lamb-hub-card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.lamb-hub-card__media {
+  position: relative;
+  min-height: 220px;
+  background: #111;
+}
+
+.lamb-hub-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lamb-hub-card__body {
+  padding: clamp(1.2rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.lamb-hub-card__eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-muted);
+}
+
+.lamb-hub-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.lamb-hub-card__desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text-soft);
+}
+
+.lamb-hub-card__cta {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+  pointer-events: none;
+}
+
+.lamb-detail__toolbar {
+  margin-bottom: var(--space-md);
+}
+
+.lamb-detail__intro {
+  margin-bottom: var(--space-lg);
+}
+
+.lamb-featured {
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.lamb-featured__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.lamb-featured__root {
+  max-width: 520px;
+}
+
+.lamb-featured__root .product-card {
+  margin: 0;
+}
+
+.lamb-origins__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.lamb-origin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.lamb-origin-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.lamb-origin-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #111;
+}
+
+.lamb-origin-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lamb-origin-card__body {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.lamb-origin-card__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+.lamb-origin-card__desc {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-text-soft);
+  flex: 1;
+}
+
+.lamb-origin-card__btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.lamb-origin-products {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.lamb-origin-products__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  margin: 0 0 var(--space-md);
+  color: var(--color-text);
+}
+
+.lamb-disclaimer {
+  margin: clamp(2rem, 5vw, 3rem) 0 0;
+  padding: var(--space-md);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  border: 1px solid rgba(201, 169, 98, 0.25);
+  border-radius: var(--radius);
+  background: rgba(8, 8, 8, 0.35);
+}
+
+@media (max-width: 900px) {
+  .mutton-hub-card,
+  .lamb-hub-card {
+    grid-template-columns: 1fr;
+  }
+
+  .mutton-hub-card__media,
+  .lamb-hub-card__media {
+    min-height: 200px;
+    max-height: 280px;
+  }
+
+  .mutton-origin-grid,
+  .lamb-origin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .mutton-hub-card__cta,
+  .lamb-hub-card__cta {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ----- Sections ----- */
@@ -1264,6 +1739,18 @@ code,
 }
 
 @media (max-width: 520px) {
+  .hero {
+    padding-top: clamp(2.25rem, 8vw, 3.25rem);
+    padding-bottom: clamp(1.75rem, 5vw, 2.6rem);
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+
+  .hero-inner {
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+  }
+
   .hero-actions .btn {
     width: 100%;
   }
@@ -1277,12 +1764,6 @@ code,
   }
 }
 
-@media (max-width: 768px) {
-  .hero__media,
-  .hero_media {
-    display: none;
-  }
-}
 /* FORCE MOBILE PRODUCT GRID - 2 CARDS PER ROW */
 @media (max-width: 768px) {
   .products-grid,

@@ -2,7 +2,7 @@
  * Brexil — product catalog (single source of truth)
  * Edit items here; the site renders from this list.
  *
- * category: 'beef' | 'chicken' | 'mutton' | 'eggs' (internal keys — keep as-is)
+ * category: 'beef' | 'chicken' | 'mutton' | 'lamb' | 'eggs' (internal keys — keep as-is)
  * image: Unsplash URLs (raw retail / butcher / prep — no live animals, no plated restaurant meals)
  */
 var IMG_BEEF =
@@ -13,6 +13,23 @@ var IMG_MUTTON =
   'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=900&q=85';
 var IMG_EGGS =
   'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=900&q=85';
+
+/**
+ * Mutton “today’s pick” — set productId to any mutton item id in this file, or edit that product directly.
+ * Optional sectionHeading overrides the title above the featured card (same string as in index.html by default).
+ */
+window.BREXIL_MUTTON_FEATURED = {
+  sectionHeading: "Today's Recommended Mutton Cut",
+  productId: 'mutton-recommended-shoulder',
+};
+
+/**
+ * Lamb “today’s pick” — same pattern as BREXIL_MUTTON_FEATURED.
+ */
+window.BREXIL_LAMB_FEATURED = {
+  sectionHeading: "Today's Recommended Lamb Cut",
+  productId: 'lamb-recommended-chops',
+};
 
 window.BREXIL_PRODUCTS = [
 
@@ -119,46 +136,234 @@ window.BREXIL_PRODUCTS = [
     image: IMG_CHICKEN,
   },
 
-  /* Mutton */
+  /* Mutton — featured (not tied to an origin row); edited via BREXIL_MUTTON_FEATURED.productId */
   {
-    id: 'mutton-mix',
+    id: 'mutton-recommended-shoulder',
     category: 'mutton',
-    name: 'Mutton Mix',
-    description: 'Balanced premium mix cuts, freshly prepared for rich home curries.',
+    muttonFeatured: true,
+    name: 'Mutton Shoulder – Fresh Cut',
+    description: 'Recommended for curry, slow cooking, and family meals.',
     price: 'AED —',
-    image: IMG_MUTTON,
+    image: 'assets/images/mutton-recommended.jpg',
+  },
+
+  /* Mutton — Pakistani */
+  {
+    id: 'mutton-pk-curry-cut',
+    category: 'mutton',
+    muttonOrigin: 'pakistani',
+    name: 'Pakistani Mutton Curry Cut',
+    description: 'Classic bone-in pieces for everyday curries and slow cooking.',
+    price: 'AED —',
+    image: 'assets/images/mutton-pk-curry-cut.jpg',
   },
   {
-    id: 'mutton-paya-cleaned',
+    id: 'mutton-pk-boneless',
     category: 'mutton',
-    name: 'Fresh Mutton Paya (Cleaned & Ready)',
-    description: 'Carefully cleaned and ready-to-cook paya with hygienic preparation.',
+    muttonOrigin: 'pakistani',
+    name: 'Pakistani Mutton Boneless',
+    description: 'Neat boneless cuts for quick meals and even cooking.',
     price: 'AED —',
-    image: IMG_MUTTON,
+    image: 'assets/images/mutton-pk-boneless.jpg',
   },
   {
-    id: 'mutton-chops',
+    id: 'mutton-pk-leg',
     category: 'mutton',
-    name: 'Mutton Chops',
-    description: 'Premium fresh chops with quality trimming for perfect tenderness.',
+    muttonOrigin: 'pakistani',
+    name: 'Pakistani Mutton Leg',
+    description: 'Lean leg portions ideal for roasting or rich curries.',
+    price: 'AED —',
+    image: 'assets/images/mutton-pk-leg.jpg',
+  },
+  {
+    id: 'mutton-pk-chops',
+    category: 'mutton',
+    muttonOrigin: 'pakistani',
+    name: 'Pakistani Mutton Chops',
+    description: 'Premium chops with careful trimming for tenderness.',
     price: 'AED —',
     image: 'assets/images/mutton-chops.jpg',
   },
   {
-    id: 'mutton-mince',
+    id: 'mutton-pk-mince',
     category: 'mutton',
-    name: 'Mutton Mince',
-    description: 'Freshly minced mutton prepared with strict hygiene and consistency.',
+    muttonOrigin: 'pakistani',
+    name: 'Pakistani Mutton Mince',
+    description: 'Fresh mince prepared with consistent texture for keema dishes.',
     price: 'AED —',
-    image: IMG_MUTTON,
+    image: 'assets/images/mutton-pk-mince.jpg',
+  },
+
+  /* Mutton — Indian */
+  {
+    id: 'mutton-in-curry-cut',
+    category: 'mutton',
+    muttonOrigin: 'indian',
+    name: 'Indian Mutton Curry Cut',
+    description: 'Balanced cuts suited to regional curries and slow braises.',
+    price: 'AED —',
+    image: 'assets/images/mutton-in-curry-cut.jpg',
   },
   {
-    id: 'mutton-boneless-boti-tikka',
+    id: 'mutton-in-boneless',
     category: 'mutton',
-    name: 'Boneless Mutton (Boti / Tikka Cut)',
-    description: 'Quality boneless pieces cut evenly for premium grills and curries.',
+    muttonOrigin: 'indian',
+    name: 'Indian Mutton Boneless',
+    description: 'Boneless portions for grills, stir-fry, and tender curries.',
     price: 'AED —',
-    image: IMG_MUTTON,
+    image: 'assets/images/mutton-in-boneless.jpg',
+  },
+  {
+    id: 'mutton-in-leg',
+    category: 'mutton',
+    muttonOrigin: 'indian',
+    name: 'Indian Mutton Leg',
+    description: 'Versatile leg cuts for roasting or hearty family recipes.',
+    price: 'AED —',
+    image: 'assets/images/mutton-in-leg.jpg',
+  },
+  {
+    id: 'mutton-in-shoulder',
+    category: 'mutton',
+    muttonOrigin: 'indian',
+    name: 'Indian Mutton Shoulder',
+    description: 'Rich shoulder meat — excellent for slow cooking and flavourful gravies.',
+    price: 'AED —',
+    image: 'assets/images/mutton-in-shoulder.jpg',
+  },
+
+  /* Mutton — African origin */
+  {
+    id: 'mutton-af-curry-cut',
+    category: 'mutton',
+    muttonOrigin: 'african',
+    name: 'African Origin Mutton Curry Cut',
+    description: 'Hearty curry-cut pieces with robust flavour for slow cooking.',
+    price: 'AED —',
+    image: 'assets/images/mutton-af-curry-cut.jpg',
+  },
+  {
+    id: 'mutton-af-leg',
+    category: 'mutton',
+    muttonOrigin: 'african',
+    name: 'African Origin Mutton Leg',
+    description: 'Lean leg cuts suitable for roasting and traditional curries.',
+    price: 'AED —',
+    image: 'assets/images/mutton-af-leg.jpg',
+  },
+  {
+    id: 'mutton-af-shoulder',
+    category: 'mutton',
+    muttonOrigin: 'african',
+    name: 'African Origin Mutton Shoulder',
+    description: 'Shoulder portions ideal for rich gravies and family-sized meals.',
+    price: 'AED —',
+    image: 'assets/images/mutton-af-shoulder.jpg',
+  },
+  {
+    id: 'mutton-af-half-whole-carcass',
+    category: 'mutton',
+    muttonOrigin: 'african',
+    name: 'African Origin Mutton Half / Whole Carcass',
+    description: 'For larger household orders — confirm portion size on WhatsApp.',
+    price: 'AED —',
+    image: 'assets/images/mutton-af-carcass.jpg',
+  },
+
+  /* Lamb — featured (hub detail only; not tied to an origin row) */
+  {
+    id: 'lamb-recommended-chops',
+    category: 'lamb',
+    lambFeatured: true,
+    name: 'Lamb Chops – Fresh Cut',
+    description: 'Tender chops — excellent on the grill or in the oven.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+
+  /* Lamb — Australian / New Zealand */
+  {
+    id: 'lamb-au-chops',
+    category: 'lamb',
+    lambOrigin: 'aus-nz',
+    name: 'Lamb Chops',
+    description: 'Premium chops with mild flavour — perfect for quick family meals.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+  {
+    id: 'lamb-au-leg',
+    category: 'lamb',
+    lambOrigin: 'aus-nz',
+    name: 'Lamb Leg',
+    description: 'Lean leg cuts ideal for roasting or slow Sunday dinners.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+  {
+    id: 'lamb-au-shoulder',
+    category: 'lamb',
+    lambOrigin: 'aus-nz',
+    name: 'Lamb Shoulder',
+    description: 'Rich shoulder meat for slow cooking and hearty flavours.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+  {
+    id: 'lamb-au-rack',
+    category: 'lamb',
+    lambOrigin: 'aus-nz',
+    name: 'Lamb Rack',
+    description: 'Elegant rack portions for grilling or oven roasting.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+  {
+    id: 'lamb-au-mince',
+    category: 'lamb',
+    lambOrigin: 'aus-nz',
+    name: 'Lamb Mince',
+    description: 'Fresh lamb mince for keema, kofta, and everyday recipes.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+
+  /* Lamb — Sudanese / East African */
+  {
+    id: 'lamb-sudan-curry-cut',
+    category: 'lamb',
+    lambOrigin: 'sudan-east-africa',
+    name: 'Lamb Curry Cut',
+    description: 'Bone-in curry pieces from Sudan/Ethiopia-region style supply — hearty and aromatic.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+  {
+    id: 'lamb-sudan-shoulder',
+    category: 'lamb',
+    lambOrigin: 'sudan-east-africa',
+    name: 'Lamb Shoulder',
+    description: 'Shoulder portions suited to bold curries and long simmers.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+  {
+    id: 'lamb-sudan-leg',
+    category: 'lamb',
+    lambOrigin: 'sudan-east-africa',
+    name: 'Lamb Leg',
+    description: 'Versatile leg cuts for roasting or generous family trays.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
+  },
+  {
+    id: 'lamb-sudan-whole-half',
+    category: 'lamb',
+    lambOrigin: 'sudan-east-africa',
+    name: 'Whole / Half Lamb',
+    description: 'Larger formats for gatherings — portion and availability on WhatsApp.',
+    price: 'AED —',
+    image: 'assets/images/mutton-chops.jpg',
   },
 
   /* Eggs */

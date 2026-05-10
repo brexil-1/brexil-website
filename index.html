@@ -15,19 +15,258 @@
   <div id="site-header"></div>
 
   <main>
-    <!-- Hero -->
+    <!-- Hero: layout and typography controlled in css/style.css (.hero, .hero-inner) -->
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero__media" aria-hidden="true"></div>
       <div class="hero-inner">
-        <p class="hero-eyebrow">UAE households</p>
-        <h1 id="hero-heading" class="hero-title">Fresh meat delivered across Dubai</h1>
-        <p class="hero-lead">Brexil provides fresh beef, mutton, chicken, and eggs with household-friendly portions and custom cuts on request.</p>
+        <h1 id="hero-heading" class="hero-title">Fresh Meat delivered across Dubai</h1>
+        <p class="hero-product-line" aria-label="Product categories">Meat • Mutton • Lamb • Chicken • Eggs</p>
+        <p class="hero-lead">Brexil provides fresh Meat, Mutton, Lamb, Chicken, and Eggs with household-friendly portions and custom cuts on request.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#" data-brexil-whatsapp="general">Order on WhatsApp</a>
           <a class="btn btn-ghost" href="#mutton">View featured cuts</a>
           <a class="btn btn-ghost" href="#beef">Browse products</a>
         </div>
         <p class="hero-trust">Serving households across Dubai • Custom cuts available on request</p>
+      </div>
+    </section>
+
+    <!-- Category: Mutton -->
+    <section id="mutton" class="section category-section mutton-section" aria-labelledby="mutton-heading">
+      <div class="section-inner">
+        <div id="mutton-hub" class="mutton-hub">
+          <div class="section-banner mutton-hub-banner" data-banner-key="mutton" aria-hidden="true"></div>
+          <header class="section-header">
+            <h2 id="mutton-heading" class="section-title">Mutton</h2>
+            <p class="section-intro">Premium mutton cuts cleaned and prepared for rich family recipes.</p>
+          </header>
+          <button type="button" class="mutton-hub-card" data-mutton-open-detail aria-expanded="false">
+            <div class="mutton-hub-card__media">
+              <img
+                class="mutton-hub-card__img"
+                src="assets/images/mutton-category-card.jpg"
+                alt=""
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async"
+                data-mutton-img-fallback="assets/images/mutton-chops.jpg"
+              />
+            </div>
+            <div class="mutton-hub-card__body">
+              <p class="mutton-hub-card__eyebrow">Premium selection</p>
+              <h3 class="mutton-hub-card__title">Mutton</h3>
+              <p class="mutton-hub-card__desc">
+                Explore origins and cuts — Pakistani, Indian, and African — with household-friendly portions.
+              </p>
+              <span class="btn btn-primary mutton-hub-card__cta">View Mutton</span>
+            </div>
+          </button>
+        </div>
+
+        <div id="mutton-detail" class="mutton-detail" hidden>
+          <div class="mutton-detail__toolbar">
+            <button type="button" class="btn btn-ghost mutton-back-btn" data-mutton-back>← Back</button>
+          </div>
+
+          <header class="section-header mutton-detail__intro">
+            <h2 class="section-title">Mutton</h2>
+            <p class="section-intro">Choose an origin, then browse cuts. Add to cart or confirm details on WhatsApp.</p>
+          </header>
+
+          <section class="mutton-featured" aria-labelledby="mutton-featured-heading">
+            <h3 id="mutton-featured-heading" class="mutton-featured__title">Today's Recommended Mutton Cut</h3>
+            <div id="mutton-featured-root" class="mutton-featured__root"></div>
+          </section>
+
+          <section class="mutton-origins" aria-label="Mutton by origin">
+            <h3 class="mutton-origins__heading">Choose origin</h3>
+            <div class="mutton-origin-grid">
+              <article class="mutton-origin-card">
+                <div class="mutton-origin-card__media">
+                  <img
+                    class="mutton-origin-card__img"
+                    src="assets/images/mutton-origin-pakistani.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-mutton-img-fallback="assets/images/mutton-chops.jpg"
+                  />
+                </div>
+                <div class="mutton-origin-card__body">
+                  <h4 class="mutton-origin-card__title">Pakistani Mutton</h4>
+                  <p class="mutton-origin-card__desc">Bold, aromatic profiles — ideal for curries and slow cooking.</p>
+                  <button type="button" class="btn btn-primary mutton-origin-card__btn" data-mutton-view-origin="pakistani">
+                    View Cuts
+                  </button>
+                </div>
+              </article>
+              <article class="mutton-origin-card">
+                <div class="mutton-origin-card__media">
+                  <img
+                    class="mutton-origin-card__img"
+                    src="assets/images/mutton-origin-indian.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-mutton-img-fallback="assets/images/mutton-chops.jpg"
+                  />
+                </div>
+                <div class="mutton-origin-card__body">
+                  <h4 class="mutton-origin-card__title">Indian Mutton</h4>
+                  <p class="mutton-origin-card__desc">Versatile cuts suited to regional favourites and everyday meals.</p>
+                  <button type="button" class="btn btn-primary mutton-origin-card__btn" data-mutton-view-origin="indian">
+                    View Cuts
+                  </button>
+                </div>
+              </article>
+              <article class="mutton-origin-card">
+                <div class="mutton-origin-card__media">
+                  <img
+                    class="mutton-origin-card__img"
+                    src="assets/images/mutton-origin-african.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-mutton-img-fallback="assets/images/mutton-chops.jpg"
+                  />
+                </div>
+                <div class="mutton-origin-card__body">
+                  <h4 class="mutton-origin-card__title">African Origin Mutton</h4>
+                  <p class="mutton-origin-card__desc">Hearty cuts for robust flavours — including larger formats on request.</p>
+                  <button type="button" class="btn btn-primary mutton-origin-card__btn" data-mutton-view-origin="african">
+                    View Cuts
+                  </button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="mutton-origin-products" class="mutton-origin-products" hidden aria-live="polite">
+            <h3 id="mutton-origin-products-title" class="mutton-origin-products__title"></h3>
+            <div id="mutton-products-grid" class="product-grid mutton-products-grid"></div>
+          </section>
+
+          <p class="mutton-disclaimer">
+            Availability and prices may vary based on daily market supply. Please confirm on WhatsApp.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category: Lamb -->
+    <section id="lamb" class="section category-section section-alt lamb-section" aria-labelledby="lamb-heading">
+      <div class="section-inner">
+        <div id="lamb-hub" class="lamb-hub">
+          <div class="section-banner lamb-hub-banner" data-banner-key="lamb" aria-hidden="true"></div>
+          <header class="section-header">
+            <h2 id="lamb-heading" class="section-title">Lamb</h2>
+            <p class="section-intro">Fresh lamb cuts sourced from premium origins for tender and mild-flavoured cooking.</p>
+          </header>
+          <button type="button" class="lamb-hub-card" data-lamb-open-detail aria-expanded="false">
+            <div class="lamb-hub-card__media">
+              <img
+                class="lamb-hub-card__img"
+                src="assets/images/mutton-chops.jpg"
+                alt=""
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async"
+                data-lamb-img-fallback="assets/images/mutton-chops.jpg"
+              />
+            </div>
+            <div class="lamb-hub-card__body">
+              <p class="lamb-hub-card__eyebrow">Premium selection</p>
+              <h3 class="lamb-hub-card__title">Lamb</h3>
+              <p class="lamb-hub-card__desc">
+                Australian / New Zealand and Sudanese / East African lamb — explore cuts by origin with household-friendly portions.
+              </p>
+              <span class="btn btn-primary lamb-hub-card__cta">View Lamb</span>
+            </div>
+          </button>
+          <!-- Required category grid (left empty — cuts render in lamb detail origins) -->
+          <div class="product-grid" data-category="lamb" hidden aria-hidden="true"></div>
+        </div>
+
+        <div id="lamb-detail" class="lamb-detail" hidden>
+          <div class="lamb-detail__toolbar">
+            <button type="button" class="btn btn-ghost lamb-back-btn" data-lamb-back>← Back</button>
+          </div>
+
+          <header class="section-header lamb-detail__intro">
+            <h2 class="section-title">Lamb</h2>
+            <p class="section-intro">Choose an origin, then browse cuts. Add to cart or confirm details on WhatsApp.</p>
+          </header>
+
+          <section class="lamb-featured" aria-labelledby="lamb-featured-heading">
+            <h3 id="lamb-featured-heading" class="lamb-featured__title">Today's Recommended Lamb Cut</h3>
+            <div id="lamb-featured-root" class="lamb-featured__root"></div>
+          </section>
+
+          <section class="lamb-origins" aria-label="Lamb by origin">
+            <h3 class="lamb-origins__heading">Choose origin</h3>
+            <div class="lamb-origin-grid">
+              <article class="lamb-origin-card">
+                <div class="lamb-origin-card__media">
+                  <img
+                    class="lamb-origin-card__img"
+                    src="assets/images/mutton-chops.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-lamb-img-fallback="assets/images/mutton-chops.jpg"
+                  />
+                </div>
+                <div class="lamb-origin-card__body">
+                  <h4 class="lamb-origin-card__title">Australian / New Zealand Lamb</h4>
+                  <p class="lamb-origin-card__desc">Mild, tender lamb — chops, racks, roasting cuts, and mince suited to everyday family cooking.</p>
+                  <button type="button" class="btn btn-primary lamb-origin-card__btn" data-lamb-view-origin="aus-nz">
+                    View Cuts
+                  </button>
+                </div>
+              </article>
+              <article class="lamb-origin-card">
+                <div class="lamb-origin-card__media">
+                  <img
+                    class="lamb-origin-card__img"
+                    src="assets/images/mutton-chops.jpg"
+                    alt=""
+                    width="640"
+                    height="420"
+                    loading="lazy"
+                    decoding="async"
+                    data-lamb-img-fallback="assets/images/mutton-chops.jpg"
+                  />
+                </div>
+                <div class="lamb-origin-card__body">
+                  <h4 class="lamb-origin-card__title">Sudanese / East African Lamb</h4>
+                  <p class="lamb-origin-card__desc">Supply grouped from Sudan plus Ethiopia/Kenya-style channels — bolder flavour for curry and slow cooking.</p>
+                  <button type="button" class="btn btn-primary lamb-origin-card__btn" data-lamb-view-origin="sudan-east-africa">
+                    View Cuts
+                  </button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="lamb-origin-products" class="lamb-origin-products" hidden aria-live="polite">
+            <h3 id="lamb-origin-products-title" class="lamb-origin-products__title"></h3>
+            <div id="lamb-products-grid" class="product-grid lamb-products-grid"></div>
+          </section>
+
+          <p class="lamb-disclaimer">
+            Availability and prices may vary based on daily market supply. Please confirm on WhatsApp.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -55,20 +294,8 @@
       </div>
     </section>
 
-    <!-- Category: Mutton -->
-    <section id="mutton" class="section category-section" aria-labelledby="mutton-heading">
-      <div class="section-inner">
-        <div class="section-banner" data-banner-key="mutton" aria-hidden="true"></div>
-        <header class="section-header">
-          <h2 id="mutton-heading" class="section-title">Mutton</h2>
-          <p class="section-intro">Premium mutton cuts cleaned and prepared for rich family recipes.</p>
-        </header>
-        <div class="product-grid" data-category="mutton"></div>
-      </div>
-    </section>
-
     <!-- Category: Eggs -->
-    <section id="eggs" class="section category-section section-alt" aria-labelledby="eggs-heading">
+    <section id="eggs" class="section category-section" aria-labelledby="eggs-heading">
       <div class="section-inner">
         <div class="section-banner" data-banner-key="eggs" aria-hidden="true"></div>
         <header class="section-header">
