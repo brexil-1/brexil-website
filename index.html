@@ -19,15 +19,206 @@
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero__media" aria-hidden="true"></div>
       <div class="hero-inner">
-        <h1 id="hero-heading" class="hero-title">Fresh Meat delivered across Dubai</h1>
+        <h1 id="hero-heading" class="hero-title">Fresh Meat Delivered Across Dubai</h1>
         <p class="hero-product-line" aria-label="Product categories">Meat • Mutton • Lamb • Chicken • Eggs</p>
         <p class="hero-lead">Brexil provides fresh Meat, Mutton, Lamb, Chicken, and Eggs with household-friendly portions and custom cuts on request.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#" data-brexil-whatsapp="general">Order on WhatsApp</a>
-          <a class="btn btn-ghost" href="#mutton">View featured cuts</a>
-          <a class="btn btn-ghost" href="#beef">Browse products</a>
+          <a class="btn btn-primary" id="hero-view-featured-cuts" href="#featured-selections">View Featured Cuts</a>
+          <a class="btn btn-primary" id="hero-view-browse-products" href="#browse-products-panel">Browse Products</a>
         </div>
         <p class="hero-trust">Serving households across Dubai • Custom cuts available on request</p>
+      </div>
+    </section>
+
+    <!-- Featured selections (all categories) -->
+    <section
+      id="featured-selections"
+      class="section section-alt featured-selections-section featured-selections-section--hidden"
+      aria-labelledby="featured-selections-heading"
+      aria-hidden="true"
+    >
+      <div class="section-inner">
+        <header class="section-header featured-selections-header">
+          <div class="featured-selections-header__row">
+            <h2 id="featured-selections-heading" class="section-title">Featured Selections</h2>
+            <button
+              type="button"
+              class="btn btn-ghost featured-selections-hide-btn"
+              id="featured-selections-hide"
+            >
+              Hide Featured Selections
+            </button>
+          </div>
+          <p class="section-intro">
+            Explore our curated selections across Mutton, Lamb, Beef, Chicken, and Eggs.
+          </p>
+        </header>
+        <div class="featured-selections-grid">
+          <article class="featured-selection-card">
+            <div class="featured-selection-card__media">
+              <img
+                class="featured-selection-card__img"
+                src="assets/images/mutton-recommended-mixed-cuts.png"
+                alt=""
+                width="640"
+                height="480"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="featured-selection-card__body">
+              <p class="featured-selection-card__label">Featured Mutton Selection</p>
+              <h3 class="featured-selection-card__title">Premium Mixed Mutton Cuts</h3>
+              <a class="btn btn-primary featured-selection-card__btn" href="#mutton">View Category</a>
+            </div>
+          </article>
+          <article class="featured-selection-card">
+            <div class="featured-selection-card__media">
+              <img
+                class="featured-selection-card__img"
+                src="assets/images/mutton-chops.jpg"
+                alt=""
+                width="640"
+                height="480"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="featured-selection-card__body">
+              <p class="featured-selection-card__label">Featured Lamb Selection</p>
+              <h3 class="featured-selection-card__title">Premium Lamb Cuts Selection</h3>
+              <a class="btn btn-primary featured-selection-card__btn" href="#lamb">View Category</a>
+            </div>
+          </article>
+          <article class="featured-selection-card">
+            <div class="featured-selection-card__media">
+              <img
+                class="featured-selection-card__img"
+                src="assets/images/beef-steak-cuts.jpg"
+                alt=""
+                width="640"
+                height="480"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="featured-selection-card__body">
+              <p class="featured-selection-card__label">Featured Beef Selection</p>
+              <h3 class="featured-selection-card__title">Premium Beef Steak &amp; Cut Selection</h3>
+              <a class="btn btn-primary featured-selection-card__btn" href="#beef">View Category</a>
+            </div>
+          </article>
+          <article class="featured-selection-card">
+            <div class="featured-selection-card__media">
+              <img
+                class="featured-selection-card__img"
+                src="assets/images/chicken-boneless.jpg"
+                alt=""
+                width="640"
+                height="480"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="featured-selection-card__body">
+              <p class="featured-selection-card__label">Featured Chicken Selection</p>
+              <h3 class="featured-selection-card__title">Fresh Premium Chicken Cuts</h3>
+              <a class="btn btn-primary featured-selection-card__btn" href="#chicken">View Category</a>
+            </div>
+          </article>
+          <article class="featured-selection-card">
+            <div class="featured-selection-card__media">
+              <img
+                class="featured-selection-card__img"
+                src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&amp;fit=crop&amp;w=900&amp;q=85"
+                alt=""
+                width="900"
+                height="675"
+                loading="lazy"
+                decoding="async"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="featured-selection-card__body">
+              <p class="featured-selection-card__label">Featured Eggs Selection</p>
+              <h3 class="featured-selection-card__title">Fresh Farm Eggs Selection</h3>
+              <a class="btn btn-primary featured-selection-card__btn" href="#eggs">View Category</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Browse Products Panel -->
+    <section
+      id="browse-products-panel"
+      class="section section-alt browse-products-panel--hidden"
+      aria-labelledby="browse-products-heading"
+      aria-hidden="true"
+    >
+      <div class="section-inner">
+        <header class="section-header browse-products-header">
+          <div class="browse-products-header__row">
+            <h2 id="browse-products-heading" class="section-title">Browse Products</h2>
+            <button type="button" class="btn btn-ghost browse-products-hide-btn" id="browse-products-hide">
+              Hide Browse Products
+            </button>
+          </div>
+          <p class="section-intro">Choose a category to explore our fresh selections.</p>
+        </header>
+
+        <div class="browse-products-grid" role="list">
+          <a class="browse-category-card" href="#mutton" role="listitem" aria-label="Browse Mutton">
+            <div class="browse-category-card__media">
+              <img class="browse-category-card__img" src="assets/images/mutton-origin-farm.png" alt="" width="320" height="240" loading="lazy" decoding="async" />
+            </div>
+            <div class="browse-category-card__body">
+              <h3 class="browse-category-card__title">Mutton</h3>
+              <p class="browse-category-card__subtitle">Premium origin cuts</p>
+            </div>
+          </a>
+
+          <a class="browse-category-card" href="#lamb" role="listitem" aria-label="Browse Lamb">
+            <div class="browse-category-card__media">
+              <img class="browse-category-card__img" src="assets/images/lamb-origin-premium.png" alt="" width="320" height="240" loading="lazy" decoding="async" />
+            </div>
+            <div class="browse-category-card__body">
+              <h3 class="browse-category-card__title">Lamb</h3>
+              <p class="browse-category-card__subtitle">Tender selections</p>
+            </div>
+          </a>
+
+          <a class="browse-category-card" href="#beef" role="listitem" aria-label="Browse Beef">
+            <div class="browse-category-card__media">
+              <img class="browse-category-card__img" src="assets/images/beef-origin-farm.png" alt="" width="320" height="240" loading="lazy" decoding="async" />
+            </div>
+            <div class="browse-category-card__body">
+              <h3 class="browse-category-card__title">Beef</h3>
+              <p class="browse-category-card__subtitle">Steak &amp; everyday cuts</p>
+            </div>
+          </a>
+
+          <a class="browse-category-card" href="#chicken" role="listitem" aria-label="Browse Chicken">
+            <div class="browse-category-card__media">
+              <img class="browse-category-card__img" src="assets/images/chicken-origin-farm.png" alt="" width="320" height="240" loading="lazy" decoding="async" />
+            </div>
+            <div class="browse-category-card__body">
+              <h3 class="browse-category-card__title">Chicken</h3>
+              <p class="browse-category-card__subtitle">Fresh poultry selection</p>
+            </div>
+          </a>
+
+          <a class="browse-category-card" href="#eggs" role="listitem" aria-label="Browse Eggs">
+            <div class="browse-category-card__media">
+              <img class="browse-category-card__img" src="assets/images/eggs-farm-origin.png" alt="" width="320" height="240" loading="lazy" decoding="async" />
+            </div>
+            <div class="browse-category-card__body">
+              <h3 class="browse-category-card__title">Eggs</h3>
+              <p class="browse-category-card__subtitle">Farm egg selections</p>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 

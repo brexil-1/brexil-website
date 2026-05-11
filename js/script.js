@@ -907,10 +907,171 @@
       });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', run);
-  } else {
+  /**
+   * Featured Selections block: hidden until hero CTA or #featured-selections in URL.
+   */
+  function initFeaturedSelectionsReveal() {
+    var section = document.getElementById('featured-selections');
+    var trigger = document.getElementById('hero-view-featured-cuts');
+    if (!section) return;
+
+    var HIDDEN_CLASS = 'featured-selections-section--hidden';
+
+    function reveal() {
+      section.classList.remove(HIDDEN_CLASS);
+      section.setAttribute('aria-hidden', 'false');
+    }
+
+    function hide() {
+      section.classList.add(HIDDEN_CLASS);
+      section.setAttribute('aria-hidden', 'true');
+      var path = window.location.pathname + window.location.search;
+      if (window.history.replaceState) {
+        window.history.replaceState(null, '', path);
+      } else {
+        window.location.hash = '';
+      }
+    }
+
+    function scrollToFeatured() {
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    }
+
+    function scrollToHero() {
+      var hero = document.querySelector('.hero');
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          if (hero) {
+            hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
+    function applyHash() {
+      if (window.location.hash !== '#featured-selections') return;
+      var wasHidden = section.classList.contains(HIDDEN_CLASS);
+      reveal();
+      if (wasHidden) {
+        scrollToFeatured();
+      }
+    }
+
+    applyHash();
+    window.addEventListener('hashchange', applyHash);
+
+    if (trigger) {
+      trigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        reveal();
+        if (window.location.hash !== '#featured-selections') {
+          window.history.pushState(null, '', '#featured-selections');
+        }
+        scrollToFeatured();
+      });
+    }
+
+    var hideBtn = document.getElementById('featured-selections-hide');
+    if (hideBtn) {
+      hideBtn.addEventListener('click', function () {
+        hide();
+        scrollToHero();
+      });
+    }
+  }
+
+  /**
+   * Browse Products panel: hidden until hero CTA or #browse-products-panel in URL.
+   */
+  function initBrowseProductsPanelReveal() {
+    var panel = document.getElementById('browse-products-panel');
+    var trigger = document.getElementById('hero-view-browse-products');
+    if (!panel) return;
+
+    var HIDDEN_CLASS = 'browse-products-panel--hidden';
+
+    function reveal() {
+      panel.classList.remove(HIDDEN_CLASS);
+      panel.setAttribute('aria-hidden', 'false');
+    }
+
+    function hide() {
+      panel.classList.add(HIDDEN_CLASS);
+      panel.setAttribute('aria-hidden', 'true');
+      var path = window.location.pathname + window.location.search;
+      if (window.history.replaceState) {
+        window.history.replaceState(null, '', path);
+      } else {
+        window.location.hash = '';
+      }
+    }
+
+    function scrollToPanel() {
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    }
+
+    function scrollToHero() {
+      var hero = document.querySelector('.hero');
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          if (hero) {
+            hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
+    function applyHash() {
+      if (window.location.hash !== '#browse-products-panel') return;
+      reveal();
+      scrollToPanel();
+    }
+
+    applyHash();
+    window.addEventListener('hashchange', applyHash);
+
+    if (trigger) {
+      trigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        reveal();
+        if (window.location.hash !== '#browse-products-panel') {
+          window.history.pushState(null, '', '#browse-products-panel');
+        }
+        scrollToPanel();
+      });
+    }
+
+    var hideBtn = document.getElementById('browse-products-hide');
+    if (hideBtn) {
+      hideBtn.addEventListener('click', function () {
+        hide();
+        scrollToHero();
+      });
+    }
+  }
+
+  function onDomReady() {
     run();
+    initFeaturedSelectionsReveal();
+    initBrowseProductsPanelReveal();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onDomReady);
+  } else {
+    onDomReady();
   }
 })();
 
