@@ -20,7 +20,7 @@ var IMG_EGGS =
  * Optional sectionHeading overrides the title above the featured card (same string as in index.html by default).
  */
 window.BREXIL_MUTTON_FEATURED = {
-  sectionHeading: "Today's Recommended Mutton Cut",
+  sectionHeading: 'Featured Mutton Selection',
   productId: 'mutton-recommended-shoulder',
 };
 
@@ -28,7 +28,7 @@ window.BREXIL_MUTTON_FEATURED = {
  * Lamb “today’s pick” — same pattern as BREXIL_MUTTON_FEATURED.
  */
 window.BREXIL_LAMB_FEATURED = {
-  sectionHeading: "Today's Recommended Lamb Cut",
+  sectionHeading: 'Featured Lamb Selection',
   productId: 'lamb-recommended-chops',
 };
 
@@ -36,7 +36,7 @@ window.BREXIL_LAMB_FEATURED = {
  * Beef “today’s pick” — set productId to any beef sku below (not paya-only rows), or edit that product.
  */
 window.BREXIL_BEEF_FEATURED = {
-  sectionHeading: "Today's Recommended Beef Cut",
+  sectionHeading: 'Featured Beef Selection',
   productId: 'beef-featured-striploin',
 };
 
@@ -44,7 +44,7 @@ window.BREXIL_BEEF_FEATURED = {
  * Chicken “today’s pick” — set productId to any chicken sku in this file, or edit that product.
  */
 window.BREXIL_CHICKEN_FEATURED = {
-  sectionHeading: "Today's Recommended Chicken Cut",
+  sectionHeading: 'Featured Chicken Selection',
   productId: 'chicken-featured-boneless-cubes',
 };
 
@@ -52,7 +52,7 @@ window.BREXIL_CHICKEN_FEATURED = {
  * Eggs “today’s pick” — set productId to any eggs sku below (not featured-only duplicates), or edit that product.
  */
 window.BREXIL_EGGS_FEATURED = {
-  sectionHeading: "Today's Recommended Eggs",
+  sectionHeading: 'Featured Eggs Selection',
   productId: 'eggs-featured-brown-farm',
 };
 
@@ -63,7 +63,7 @@ window.BREXIL_PRODUCTS = [
     id: 'beef-featured-striploin',
     category: 'beef',
     beefFeatured: true,
-    name: 'Premium Striploin – Australian',
+    name: 'Premium Beef Steak & Cut Selection',
     description: 'Marbled striploin suited to grilling and premium home dinners.',
     price: 'AED —',
     image: 'assets/images/beef-steak-cuts.jpg',
@@ -246,7 +246,7 @@ window.BREXIL_PRODUCTS = [
     id: 'chicken-featured-boneless-cubes',
     category: 'chicken',
     chickenFeatured: true,
-    name: 'Chicken Boneless Cubes – Fresh Cut',
+    name: 'Fresh Premium Chicken Cuts',
     description: 'Neat boneless cubes — ideal for quick curries, stir-fry, and meal prep.',
     price: 'AED —',
     image: 'assets/images/chicken-boneless.jpg',
@@ -391,10 +391,10 @@ window.BREXIL_PRODUCTS = [
     id: 'mutton-recommended-shoulder',
     category: 'mutton',
     muttonFeatured: true,
-    name: 'Mutton Shoulder – Fresh Cut',
+    name: 'Premium Mixed Mutton Cuts',
     description: 'Recommended for curry, slow cooking, and family meals.',
     price: 'AED —',
-    image: 'assets/images/mutton-recommended.jpg',
+    image: 'assets/images/mutton-recommended-mixed-cuts.png',
   },
 
   /* Mutton — Pakistani */
@@ -525,7 +525,7 @@ window.BREXIL_PRODUCTS = [
     id: 'lamb-recommended-chops',
     category: 'lamb',
     lambFeatured: true,
-    name: 'Lamb Chops – Fresh Cut',
+    name: 'Premium Lamb Cuts Selection',
     description: 'Tender chops — excellent on the grill or in the oven.',
     price: 'AED —',
     image: 'assets/images/mutton-chops.jpg',
@@ -621,7 +621,7 @@ window.BREXIL_PRODUCTS = [
     id: 'eggs-featured-brown-farm',
     category: 'eggs',
     eggsFeatured: true,
-    name: 'Fresh Brown Eggs – Farm Selection',
+    name: 'Fresh Farm Eggs Selection',
     description: 'Premium brown eggs selected for consistent freshness and everyday cooking.',
     price: 'AED —',
     image: IMG_EGGS,
