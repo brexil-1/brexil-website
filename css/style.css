@@ -489,19 +489,20 @@ code,
 
 .featured-selections-grid {
   display: grid;
-  gap: var(--space-md);
-  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
-@media (min-width: 560px) {
+@media (min-width: 720px) {
   .featured-selections-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1100px) {
   .featured-selections-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
@@ -514,6 +515,12 @@ code,
   background: var(--color-surface);
   overflow: hidden;
   box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.featured-selection-card:hover {
+  border-color: rgba(228, 199, 122, 0.45);
+  transform: translateY(-2px);
 }
 
 .featured-selection-card__media {
@@ -529,13 +536,14 @@ code,
   object-fit: cover;
   object-position: center;
   display: block;
+  filter: brightness(1.03) contrast(1.03) saturate(1.02);
 }
 
 .featured-selection-card__body {
-  padding: var(--space-md);
+  padding: var(--space-sm);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: 0.35rem;
   flex: 1;
 }
 
@@ -550,7 +558,7 @@ code,
 .featured-selection-card__title {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-size: 1.12rem;
   font-weight: 600;
   color: var(--color-text);
   line-height: 1.25;
@@ -560,7 +568,26 @@ code,
 .featured-selection-card__btn {
   width: 100%;
   justify-content: center;
-  margin-top: var(--space-xs);
+  margin-top: 0.45rem;
+  padding: 0.62rem 0.9rem;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 520px) {
+  .featured-selection-card__body {
+    padding: var(--space-xs);
+  }
+
+  .featured-selection-card__title,
+  .featured-selection-card__label {
+    text-align: center;
+  }
+
+  .featured-selection-card__btn {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 /* ----- Browse Products panel (hidden until hero CTA) ----- */
