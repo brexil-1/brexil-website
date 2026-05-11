@@ -34,7 +34,7 @@
   --shadow-premium: 0 30px 80px rgba(0, 0, 0, 0.55);
   /* Category hub banners — one rhythm across Mutton / Lamb / Beef / Chicken / Eggs */
   --brexil-category-banner-edge: clamp(0.35rem, 1.5vw, 0.85rem);
-  --brexil-category-banner-min-height: min(45vw, 372px);
+  --brexil-category-banner-min-height: min(38vw, 300px);
   --brexil-category-banner-gradient: linear-gradient(
     to top,
     rgba(8, 8, 8, 0.34) 0%,
@@ -43,7 +43,7 @@
   );
   /* Premium “View category” hub cards — shared edge, media column, image polish */
   --brexil-premium-card-edge: clamp(0.35rem, 1.5vw, 0.85rem);
-  --brexil-premium-card-media-min-height: 240px;
+  --brexil-premium-card-media-min-height: 200px;
   --brexil-premium-card-media-bg: linear-gradient(165deg, #161412 0%, #0c0c0c 100%);
   --brexil-premium-card-img-overlay: linear-gradient(
     to top,
@@ -748,7 +748,7 @@ code,
   transform: translateX(-50%);
   width: calc(100vw - 2 * var(--brexil-category-banner-edge));
   max-width: none;
-  margin: 0 0 var(--space-lg);
+  margin: 0 0 var(--space-md);
   box-sizing: border-box;
   background-size: cover !important;
   background-position: center !important;
@@ -1626,6 +1626,15 @@ code,
     max-height: 280px;
   }
 
+  .section.category-section .mutton-hub-card__media,
+  .section.category-section .lamb-hub-card__media,
+  .section.category-section .beef-hub-card__media,
+  .section.category-section .chicken-hub-card__media,
+  .section.category-section .eggs-hub-card__media {
+    min-height: 168px;
+    max-height: 240px;
+  }
+
   .mutton-origin-grid,
   .lamb-origin-grid,
   .beef-origin-grid--main,
@@ -1694,6 +1703,156 @@ code,
   max-width: 45ch;
   color: rgba(242, 239, 232, 0.68);
   font-size: 1rem;
+}
+
+/* ----- Main category sections (Mutton / Lamb / Beef / Chicken / Eggs): compact vertical rhythm ----- */
+.section.category-section {
+  padding-top: clamp(1.45rem, 3.6vw, 2.35rem);
+  padding-bottom: clamp(1.45rem, 3.6vw, 2.35rem);
+}
+
+.section.category-section .section-header {
+  margin-bottom: clamp(0.75rem, 1.9vw, 1.25rem);
+}
+
+.section.category-section .section-title {
+  font-size: clamp(1.55rem, 3.4vw, 2.15rem);
+  margin: 0 0 0.45rem;
+}
+
+.section.category-section .section-intro {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.section.category-section .mutton-hub-card,
+.section.category-section .lamb-hub-card,
+.section.category-section .beef-hub-card,
+.section.category-section .chicken-hub-card,
+.section.category-section .eggs-hub-card {
+  gap: clamp(0.42rem, 1.2vw, 0.85rem);
+}
+
+.section.category-section .mutton-hub-card__body,
+.section.category-section .lamb-hub-card__body,
+.section.category-section .beef-hub-card__body,
+.section.category-section .chicken-hub-card__body,
+.section.category-section .eggs-hub-card__body {
+  padding: clamp(0.9rem, 2.1vw, 1.45rem);
+  gap: calc(var(--space-sm) * 0.85);
+}
+
+.section.category-section .mutton-hub-card__title,
+.section.category-section .lamb-hub-card__title,
+.section.category-section .beef-hub-card__title,
+.section.category-section .chicken-hub-card__title,
+.section.category-section .eggs-hub-card__title {
+  font-size: clamp(1.38rem, 2.6vw, 1.78rem);
+}
+
+.section.category-section .mutton-hub-card__desc,
+.section.category-section .lamb-hub-card__desc,
+.section.category-section .beef-hub-card__desc,
+.section.category-section .chicken-hub-card__desc,
+.section.category-section .eggs-hub-card__desc {
+  font-size: 0.9rem;
+  line-height: 1.48;
+}
+
+.section.category-section .mutton-detail__toolbar,
+.section.category-section .lamb-detail__toolbar,
+.section.category-section .beef-detail__toolbar,
+.section.category-section .chicken-detail__toolbar,
+.section.category-section .eggs-detail__toolbar {
+  margin-bottom: var(--space-sm);
+}
+
+.section.category-section .mutton-detail__intro,
+.section.category-section .lamb-detail__intro,
+.section.category-section .beef-detail__intro,
+.section.category-section .chicken-detail__intro,
+.section.category-section .eggs-detail__intro {
+  margin-bottom: var(--space-md);
+}
+
+.section.category-section .mutton-featured,
+.section.category-section .lamb-featured,
+.section.category-section .beef-featured,
+.section.category-section .chicken-featured,
+.section.category-section .eggs-featured {
+  margin-bottom: clamp(1.1rem, 2.6vw, 1.75rem);
+}
+
+.section.category-section .mutton-featured__title,
+.section.category-section .lamb-featured__title,
+.section.category-section .beef-featured__title,
+.section.category-section .chicken-featured__title,
+.section.category-section .eggs-featured__title {
+  margin: 0 0 var(--space-sm);
+}
+
+.section.category-section .mutton-origins__heading,
+.section.category-section .lamb-origins__heading,
+.section.category-section .beef-origins__heading,
+.section.category-section .chicken-origins__heading,
+.section.category-section .eggs-origins__heading {
+  margin: 0 0 var(--space-sm);
+}
+
+.section.category-section .mutton-origin-grid,
+.section.category-section .lamb-origin-grid {
+  gap: var(--space-sm);
+}
+
+.section.category-section .beef-origin-grid--main,
+.section.category-section .beef-origin-grid--paya,
+.section.category-section .chicken-origin-grid {
+  gap: var(--space-sm);
+}
+
+.section.category-section .mutton-origin-products,
+.section.category-section .lamb-origin-products,
+.section.category-section .beef-origin-products,
+.section.category-section .chicken-origin-products,
+.section.category-section .eggs-origin-products {
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  padding-top: var(--space-md);
+}
+
+.section.category-section .mutton-origin-card__body,
+.section.category-section .lamb-origin-card__body,
+.section.category-section .beef-origin-card__body,
+.section.category-section .chicken-origin-card__body,
+.section.category-section .eggs-origin-card__body {
+  padding: clamp(0.65rem, 1.6vw, 1.05rem);
+  gap: calc(var(--space-sm) * 0.85);
+}
+
+.section.category-section .mutton-disclaimer,
+.section.category-section .lamb-disclaimer,
+.section.category-section .beef-disclaimer,
+.section.category-section .chicken-disclaimer,
+.section.category-section .eggs-disclaimer {
+  margin-top: clamp(1.25rem, 3.2vw, 2rem);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.section.category-section .beef-paya-block {
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  padding-top: var(--space-md);
+}
+
+.section.category-section .beef-custom-note,
+.section.category-section .chicken-custom-note {
+  margin-top: clamp(1.1rem, 2.8vw, 1.85rem);
+}
+
+.section.category-section .beef-general-note {
+  margin-top: clamp(1.1rem, 2.8vw, 1.85rem);
+}
+
+.section.category-section .eggs-origin-grid {
+  gap: var(--space-sm);
 }
 
 /* Combo strip */
@@ -2573,7 +2732,7 @@ code,
   .chicken-section .chicken-hub-banner.section-banner,
   .eggs-section .eggs-hub-banner.section-banner {
     --brexil-category-banner-edge: 0.4rem;
-    min-height: clamp(220px, 52vw, 280px);
+    min-height: clamp(190px, 46vw, 240px);
   }
 }
 
